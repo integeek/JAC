@@ -2,11 +2,11 @@ import "./App.css"
 import Home from "./Component/Home"
 import React from "react"
 import ReactDOM from "react-dom"
-
+import Navigation from "./Component/navigation/Navigation"
 function App() {
   return (
     <div>
-      <Home/>
+      <Navigation/>
     </div>
   )
 }
