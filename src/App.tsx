@@ -5,7 +5,9 @@ import ReactDOM from "react-dom"
 
 function App() {
   return (
-    <Home/>
+    <div>
+      <Home/>
+    </div>
   )
 }
 
