@@ -3,10 +3,19 @@ import Home from "./Component/Home"
 import React from "react"
 import ReactDOM from "react-dom"
 import Navigation from "./Component/navigation/Navigation"
+import { BrowserRouter, Route, Routes} from "react-router-dom"
+import Faq from "./Component/Pages/Faq"
+
+
 function App() {
   return (
-    <div>
-      <Navigation/>
+    <div className ="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />     
+          <Route path="/faq" element={<Faq />} />  
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
