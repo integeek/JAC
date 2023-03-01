@@ -1,5 +1,6 @@
 import React from "react"
 
+// créer une nav bar
 function Navigation() {
   return (
     <nav className="bg-blue-300 py-4">
