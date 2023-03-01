@@ -1,0 +1,14 @@
+#icones{
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: lightgray;
+    padding: 20px;}
+
+#formulaire{
+    background-color:grey;
+    float: right;
+	width: 50%;
+	height: 100%;
+	padding: 20px;
+}
