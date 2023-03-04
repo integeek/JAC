@@ -1,9 +1,12 @@
 //page de contact
 import "./Contact.css"
+import Navigation from "../navigation/Navigation"
 
 function Contact() {
   return (
     <div>
+      <Navigation />
+
       <title>Nous contacter</title>
       <h1>Nous contacter</h1>
       <br />

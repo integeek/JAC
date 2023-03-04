@@ -3,7 +3,7 @@ import React from "react"
 // créer une nav bar
 function Navigation() {
   return (
-    <nav className="bg-blue-300 py-4">
+    <nav className="bg-blue-400 py-4">
       <div className="container mx-auto flex items-center justify-between sm:text-left">
         <h1 className="text-white font-bold text-lg flex-1">Les ailes déployées</h1>
         <ul className="flex justify left">
