@@ -8,6 +8,7 @@ import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
 import Mes_reservations from "./Component/Pages/Mes_reservations"
+import Mentions from "./Component/Pages/mentions"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />  
           <Route path="/reserver" element={<Reserver />} />     
           <Route path="/reservation" element={<Mes_reservations />} />  
+          <Route path="/mentions" element={<Mentions />} />  
         </Routes>
       </BrowserRouter>
     </div>
