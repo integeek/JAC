@@ -8,9 +8,9 @@ function Reserver() {
   return (
     <div>
       <Navigation />
-      <title>Reserver</title>
+      <title>Réserver</title>
       <br />
-      <p className="text-4xl md:text-lg">Reserver un Restaurant</p>     
+      <p className="text-4xl md:text-lg">Réserver un Restaurant</p>     
       <div className="grid grid-cols-3 gap-4 my-16 sm:gird-cols-4 lg:grid-cols-8 m-16">
         <div className="card w-96 bg-base-100 shadow-2xl">
           <figure className="mt-4"><img src="https://via.placeholder.com/150" alt="Restaurant 1" /></figure>
