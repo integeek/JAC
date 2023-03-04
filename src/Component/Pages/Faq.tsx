@@ -1,4 +1,5 @@
 import Navigation from "../navigation/Navigation"
+import Footer from "../footer/Footer"
 //page pour voir ses réservations
 
 function Faq() {
@@ -10,7 +11,7 @@ function Faq() {
       <p className="text-4xl md:text-lg">Foire aux questions</p>     
       <br />
       <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16 mb-4 rounded-box">
-        <div className="collapse-title bg-gray-300 text-xl font-medium">
+        <div className="collapse-title bg-blue-400 text-xl font-medium">
     Question 1 
         </div>
         <div className="collapse-content" style={{ textAlign: "left" }}> 
@@ -19,7 +20,7 @@ function Faq() {
       </div>
       <br /> 
       <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16  mb-4 rounded-box">
-        <div className="collapse-title bg-gray-300 text-xl font-medium">
+        <div className="collapse-title bg-blue-400 text-xl font-medium">
     Question 2
         </div>
         <div className="collapse-content" style={{ textAlign: "left" }}> 
@@ -30,14 +31,14 @@ function Faq() {
       <br /> 
 
       <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16 mb-4 rounded-box">
-        <div className="collapse-title bg-gray-300 text-xl font-medium">
+        <div className="collapse-title bg-blue-400 text-xl font-medium">
     Question 3
         </div>
         <div className="collapse-content" style={{ textAlign: "left" }}> 
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et mattis ex, vitae scelerisque ipsum. </p>
         </div>
       </div>
-
+      <Footer />
     </div>
   )
 }
