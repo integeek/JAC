@@ -6,6 +6,8 @@ import Navigation from "./Component/navigation/Navigation"
 import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
+import Reserver from "./Component/Pages/Reserver"
+import Mes_reservations from "./Component/Pages/Mes_reservations"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -16,7 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />     
           <Route path="/faq" element={<Faq />} />  
           <Route path="/contact" element={<Contact />} />  
-
+          <Route path="/reserver" element={<Reserver />} />     
+          <Route path="/reservation" element={<Mes_reservations />} />  
         </Routes>
       </BrowserRouter>
     </div>
