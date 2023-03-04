@@ -1,4 +1,5 @@
 import React from "react"
+//      <img src="C:\Users\ambre\Documents\JAC\front\src\Component\Assets\logo.jpg" alt="Logo" />
 
 // affichage d'un logo et d'un fond bleu '
 function Home() { 
