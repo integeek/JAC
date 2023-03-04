@@ -1,6 +1,7 @@
 //page de contact
 import "./Contact.css"
 import Navigation from "../navigation/Navigation"
+import Footer from "../footer/Footer"
 
 function Contact() {
   return (
@@ -48,6 +49,8 @@ function Contact() {
         </form>
 
       </div>
+      <Footer />
+
     </div>
   )
 }

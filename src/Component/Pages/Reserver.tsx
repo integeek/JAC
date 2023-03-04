@@ -1,5 +1,6 @@
 import Navigation from "../navigation/Navigation"
 import { HiLocationMarker} from "react-icons/hi"
+import Footer from "../footer/Footer"
 
 function Reserver() {
   document.body.classList.add("theme-light")
@@ -48,6 +49,8 @@ function Reserver() {
           </div>
         </div>
       </div>
+      <Footer />
+
     </div>
   )
 }
