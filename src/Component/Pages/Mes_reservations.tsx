@@ -26,7 +26,7 @@ function Mes_reservations() {
 
       <div className="border border-gray-300 p-4 mx-24 rounded-lg flex items-center mb-8">
         <div>
-          <p className="text-xl">Restaurant 1</p>
+          <p className="text-xl">Restaurant 2</p>
           <span>1 allée des lilas</span>
         </div>
         <div className="ml-auto flex items-center">
@@ -40,7 +40,7 @@ function Mes_reservations() {
 
       <div className="border border-gray-300 p-4 mx-24 rounded-lg flex items-center mb-8">
         <div>
-          <p className="text-xl">Restaurant 1</p>
+          <p className="text-xl">Restaurant 3</p>
           <span>1 allée des lilas</span>
         </div>
         <div className="ml-auto flex items-center">

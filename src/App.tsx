@@ -2,13 +2,14 @@ import "./App.css"
 import Home from "./Component/Home"
 import React from "react"
 import ReactDOM from "react-dom"
-import Navigation from "./Component/navigation/Navigation"
 import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
 import Mes_reservations from "./Component/Pages/Mes_reservations"
 import Mentions from "./Component/Pages/mentions"
+import Compte from "./Component/Pages/Compte"
+import Connexion from "./Component/Pages/Connexion"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -22,6 +23,10 @@ function App() {
           <Route path="/reserver" element={<Reserver />} />     
           <Route path="/reservation" element={<Mes_reservations />} />  
           <Route path="/mentions" element={<Mentions />} />  
+          <Route path="/compte" element={<Compte />} />  
+          <Route path="/connexion" element={<Connexion />} />  
+
+
         </Routes>
       </BrowserRouter>
     </div>
