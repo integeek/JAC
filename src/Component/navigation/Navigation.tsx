@@ -6,7 +6,7 @@ function Navigation() {
   return (
     <nav className="bg-blue-400 py-4">
       <div className="container mx-auto flex items-center justify-between sm:text-left">
-        <h1 className="text-white font-bold text-lg flex-1">Les ailes déployées</h1>
+        <h1 className="text-white font-bold text-lg">Les ailes déployées</h1>
         <ul className="flex justify left">
           <li className="px-4"><Link to="/reserver" className="text-white hover:bg-blue-300">Réserver</Link></li>
           <li className="px-4"><Link to="/reservation" className="text-white hover:bg-blue-300">Mes réservations</Link></li>
