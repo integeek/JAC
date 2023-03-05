@@ -11,11 +11,11 @@ function Home() {
     }, 2000)
 
     return () => clearTimeout(timer)
-  }, [history])
+  }, [navigate])
 
   return (
     <div className="bg-blue-500 flex justify-center items-center h-screen">
-      <img src="https://via.placeholder.com/150" alt="Logo" />
+      <img src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="Logo" />
     </div>
   )
 }
