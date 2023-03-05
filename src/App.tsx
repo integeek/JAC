@@ -10,6 +10,7 @@ import Mes_reservations from "./Component/Pages/Mes_reservations"
 import Mentions from "./Component/Pages/mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
+import Inscription from "./Component/Pages/Inscription"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -25,7 +26,7 @@ function App() {
           <Route path="/mentions" element={<Mentions />} />  
           <Route path="/compte" element={<Compte />} />  
           <Route path="/connexion" element={<Connexion />} />  
-
+          <Route path="/inscription" element={<Inscription />} />  
 
         </Routes>
       </BrowserRouter>
