@@ -7,7 +7,7 @@ function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/connexion")
+      navigate("/acceuil")
     }, 2000)
 
     return () => clearTimeout(timer)
