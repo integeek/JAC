@@ -6,7 +6,7 @@ function Footer() {
     <footer className="footer fixed bottom-0 footer-center p-4 bg-base-300 text-base-content">
       <div className="flex justify-between">
         <p className="text-black">Copyright © 2023 - All right reserved by Les ailes déployées -</p>
-        <Link to="/mentions" className="text-black">Mentions légales</Link>
+        <Link to="/mentions" className="text-black hover:underline">Mentions légales</Link>
       </div>
     </footer>
   )

@@ -15,15 +15,21 @@ function Accueil() {
                   <span className="inline-block xl:inline">Un site pour pouvoir réserver ses repas</span>
                 </h1>
                 <p className="mx-auto text-base text-gray-500 mb-8">Cela n'a jamais été aussi facile de réserver ses repas</p>
-                <div className="relative flex flex-col ">
-                  <Link to="/connexion" className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 sm:w-auto">
+                <div className="relative flex flex-row ">
+                  <Link to="/connexion" className="flex items-center m-5 px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 sm:w-auto">
                     Se connecter 
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                   </Link>
-                  <Link to="/inscription" className="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600">Créer un compte</Link>
+                  <Link to="/inscription" className="flex items-center m-5 px-6 py-3 mb-3 text-lg text-white bg-gray-400 rounded-md hover:bg-black hover:bg-opacity-75">
+                    Créer un compte 
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </Link>
                 </div>
               </div>
             </div>
