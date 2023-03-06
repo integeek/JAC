@@ -1,0 +1,12 @@
+#texte{
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 20px;}
+
+#image{
+    float: right;
+	width: 50%;
+	height: 100%;
+	padding: 20px;
+}

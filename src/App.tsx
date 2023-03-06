@@ -11,7 +11,7 @@ import Mentions from "./Component/Pages/mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
 import Inscription from "./Component/Pages/Inscription"
-import Acceuil from "./Component/Pages/Acceuil"
+import Acceuil from "./Component/Pages/Accueil"
 
 // relier les différentes pages avec l'url
 function App() {
