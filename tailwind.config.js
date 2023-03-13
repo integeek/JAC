@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require("daisyui", "mui","flowbite/plugin")],
+  plugins: [require("daisyui", "mui","flowbite/plugin, tw-elements/dist/plugin")],
   daisyui: {
     styled: true,
     themes: false,

@@ -9,7 +9,7 @@ function Accueil() {
       <section className="px-2 py-32 bg-white">
         <div className="container items-center max-w-6xl px-8 mx-auto">
           <div className="flex flex-wrap items-center sm:-mx-3">
-            <div className="justify-left col-span-1" id="texte">
+            <div className=" md:w-1/2 justify-left col-span-1" id="texte">
               <div className="pb-6">
                 <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 mb-4 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
                   <span className="inline-block xl:inline">Un site pour pouvoir réserver ses repas</span>
@@ -33,7 +33,7 @@ function Accueil() {
                 </div>
               </div>
             </div>
-            <div className="justify-end col-span-1 " id="image">
+            <div className="justify-end col-span-1 md:w-1/2 " id="image">
               <div className="h-auto overflow-hidden rounded-md shadow-xl  md:justify-end sm:rounded-xl">
                 <img src="https://lepetitjournal.com/sites/default/files/styles/main_article/public/2022-04/Farandole-plat-restaurant-francais-Le-Crystal.jpg?itok=NluTgo1V" alt="" className="w-full h-full object-cover"/>
               </div>
