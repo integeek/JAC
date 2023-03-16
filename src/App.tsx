@@ -17,6 +17,7 @@ import Acceuil from "./Component/Pages/Accueil"
 function App() {
   return (
     <div className ="App">
+      <link rel="shortcut icon" type="image/png" href="https://www.lad.fr/sites/default/files/LOGO_LAD_favicon.png"/>
       <BrowserRouter> 
         <Routes>
           <Route path="/" element={<Home />} />     

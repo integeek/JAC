@@ -7,7 +7,6 @@ function Mes_reservations() {
   return (
     <div>
       <Navigation />
-      <link rel="shortcut icon" type="image/png" href="https://d3fdzqvmwexz0m.cloudfront.net/images/blog/survey/discord.png"/>
       <br />
       <title>Réservations</title>
       <p className="text-4xl md:text-lg">Mes réservations</p>
