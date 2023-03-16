@@ -1,5 +1,6 @@
 import Navigation from "../navigation/Navigation"
 import Footer from "../footer/Footer"
+import { Link } from "react-router-dom"
 //page pour voir ses réservations
 
 function Faq() {
@@ -38,6 +39,9 @@ function Faq() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et mattis ex, vitae scelerisque ipsum. </p>
         </div>
       </div>
+      <br /><br />
+      <p className="text-black">Votre question n'y est pas ? Rendez-vous sur la <Link to="/contact" className="text-black hover:underline">page de contact</Link> </p>
+      
       <Footer />
     </div>
   )
