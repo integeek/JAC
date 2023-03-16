@@ -12,13 +12,13 @@ function Navigation() {
           <li className="px-4"><Link to="/faq" className="text-white hover:bg-blue-300">FAQ</Link></li>
           <li className="px-4"><Link to="/contact" className="text-white hover:bg-blue-300">Contact</Link></li>
           <li tabIndex={0}>
-            <a className="text-white">
+            <a className="text-white hover:bg-blue-300 active:bg-blue-400">
               Compte
               <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
             </a>
-            <ul className="p-2 bg-base-100">
-              <li><a>Mon compte</a></li>
-              <li><a>Se déconnecter</a></li>
+            <ul className="p-2 bg-base-100 rounded shadow-xl">
+              <li><a className="active:bg-gray-200">Mon compte</a></li>
+              <li><a className="active:bg-gray-200">Se déconnecter</a></li>
             </ul>
           </li>
           
