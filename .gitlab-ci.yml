@@ -16,7 +16,6 @@ build:
       - yarn.lock
   script:
     - yarn install --immutable
-    - yarn eslint --fix .
     - yarn run build
   artifacts:
     paths:
