@@ -12,6 +12,8 @@ import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
 import Inscription from "./Component/Pages/Inscription"
 import Acceuil from "./Component/Pages/Accueil"
+import Mdp_oublie from "./Component/Pages/mdp_oublie"
+import New_mdp from "./Component/Pages/New_mdp"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -30,6 +32,10 @@ function App() {
           <Route path="/connexion" element={<Connexion />} />  
           <Route path="/inscription" element={<Inscription />} />  
           <Route path="/acceuil" element={<Acceuil />} />  
+          <Route path="/mdpoublie" element={<Mdp_oublie />} />  
+          <Route path="/nouveaumdp" element={<New_mdp />} />  
+
+
 
 
         </Routes>
