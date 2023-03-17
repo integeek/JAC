@@ -5,11 +5,12 @@ function Mdp_oublie() {
     <div>
       <div className="flex flex-col items-center justify-center h-screen">
         <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
-          <img className="w-32 h-8 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
-          Les ailes déployées    
+          <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
         </a>
         <div className="max-w-lg  items-center center mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300">
-          <h1 className="text-4xl mb-2 font-medium">Nouveau mot de passe</h1>
+          <h1 className="text-xl font-bold leading-tight tracking-tight text-dark mb-2 md:text-2xl">
+              Nouveau mot de passe 
+          </h1>
           <p className="text-slate-500">Remplissez le formulaire pour réinitialiser votre mot de passe</p>
 
           <form action="" className="my-10">
