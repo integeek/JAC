@@ -11,7 +11,7 @@ function Inscription() {
             <img className="w-32 h-8 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           Les ailes déployées    
           </a>
-          <div className="w-2/3 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 mx-16 bg-white">
+          <div className="w-1/3 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 mx-16 bg-white">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                   Inscription
@@ -34,7 +34,7 @@ function Inscription() {
                     <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required/>
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="terms" className="font-medium text-black">J'accepte les <Link to="/mentions" className="font-medium text-black text-primary-600 hover:underline">termes et conditions d'utilisation générale</Link></label>
+                    <label htmlFor="terms" className="font-medium text-black">J'accepte les <Link to="/mentions" className="font-medium underline text-black text-primary-600 hover:underline">termes et conditions d'utilisation générale</Link></label>
                   </div>
                 </div>
                 <button type="submit" className="w-full text-black bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">S'inscrire</button>

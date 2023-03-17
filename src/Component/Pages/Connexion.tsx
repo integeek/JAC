@@ -5,13 +5,13 @@ function Connexion() {
   return (
     <div>
       <br /> <br />
-      <section className="bg-white ">
+      <section className="bg-white max-h-screen">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
             <img className="w-32 h-8 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           Les ailes déployées    
           </a>
-          <div className="w-2/3 bg-white rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 bg-white mt-4 mx-16 ">
+          <div className="w-1/3 bg-white rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 bg-white mt-4 mx-16 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-dark md:text-2xl">
                   Connexion
