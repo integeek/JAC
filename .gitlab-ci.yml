@@ -29,8 +29,8 @@ docker:
   before_script:
     - docker login -u $DOCKERLOGIN -p $DOCKERTOKEN $CI_REGISTRY
   script:
-    - docker build --tag $CI_REGISTRY_IMAGE_FRONT:prod .
-    - docker push $CI_REGISTRY_IMAGE_FRONT:prod
+    - docker build --tag $CI_IMAGE_FRONT:prod .
+    - docker push $CI_IMAGE_FRONT:prod
   dependencies:
     - build
   only:
