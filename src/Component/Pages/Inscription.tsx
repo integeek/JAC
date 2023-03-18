@@ -1,4 +1,3 @@
-import Footer from "../footer/Footer"
 import { Link } from "react-router-dom"
 
 function Inscription() {
@@ -46,7 +45,6 @@ function Inscription() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }
