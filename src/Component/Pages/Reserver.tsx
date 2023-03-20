@@ -12,8 +12,8 @@ function Reserver() {
       <title>Réserver</title>
       <br />
       <p className="text-4xl md:text-lg">Réserver un Restaurant</p>     
-      <div className="grid grid-cols-3 gap-4 my-16 sm:gird-cols-4 lg:grid-cols-8 m-16">
-        <div className="card w-96 bg-base-100 shadow-2xl">
+      <div className="grid grid-cols-3 gap-4 my-16 sm:gird-cols-4 lg:grid-cols-8 m-16 ">
+        <div className="card w-96 bg-base-100 shadow-2xl hover:scale-105 transition transform duration-700">
           <figure className="mt-4"><img src="https://via.placeholder.com/150" alt="Restaurant 1" /></figure>
           <div className="card-body">
             <h2 className="card-title">1er Restaurant</h2>
@@ -27,7 +27,7 @@ function Reserver() {
           </div>
         </div>
 
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl hover:scale-105 transition transform duration-700">
           <figure className="mt-4"><img src="https://via.placeholder.com/150" alt="Restaurant 2" /></figure>
           <div className="card-body">
             <h2 className="card-title">2eme Restaurant</h2>
@@ -38,7 +38,7 @@ function Reserver() {
           </div>
         </div>
 
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl hover:scale-105 transition transform duration-700">
           <figure className="mt-4 rounded-lg"><img src="https://via.placeholder.com/150" alt="Restaurant 3" /></figure>
           <div className="card-body">
             <h2 className="card-title">3eme Restaurant</h2>
