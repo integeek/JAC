@@ -34,10 +34,6 @@ function App() {
           <Route path="/acceuil" element={<Acceuil />} />  
           <Route path="/mdpoublie" element={<Mdp_oublie />} />  
           <Route path="/nouveaumdp" element={<New_mdp />} />  
-
-
-
-
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 function Mdp_oublie() {
   return (
     <div>
+      <title>Mot de passe oublié</title>
       <div className="flex flex-col items-center justify-center h-screen">
         <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
           <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>

@@ -6,8 +6,9 @@ import "./Accueil.css"
 function Accueil() {
   return (
     <div>
-      <section className="px-2 py-32 bg-white">
-        <div className="container items-center max-w-6xl px-8 mx-auto">
+      <title>Accueil</title>
+      <section className="px-2 py-32 flex flex-col h-screen bg-white">
+        <div className="container flex items-center max-w-6xl px-8 mx-auto">
           <div className="flex flex-wrap items-center sm:-mx-3">
             <div className=" md:w-1/2 justify-left col-span-1" id="texte">
               <div className="pb-6">
