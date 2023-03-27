@@ -7,13 +7,14 @@ import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
 import Mes_reservations from "./Component/Pages/Mes_reservations"
-import Mentions from "./Component/Pages/mentions"
+import Mentions from "./Component/Pages/Mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
 import Inscription from "./Component/Pages/Inscription"
 import Acceuil from "./Component/Pages/Accueil"
-import Mdp_oublie from "./Component/Pages/mdp_oublie"
-import New_mdp from "./Component/Pages/New_mdp"
+import Mdp_oublie from "./Component/Pages/Mdp_oublie"
+import Menu1 from "./Component/Pages/Menu1"
+import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
 
 // relier les différentes pages avec l'url
 function App() {
@@ -33,7 +34,9 @@ function App() {
           <Route path="/inscription" element={<Inscription />} />  
           <Route path="/acceuil" element={<Acceuil />} />  
           <Route path="/mdpoublie" element={<Mdp_oublie />} />  
-          <Route path="/nouveaumdp" element={<New_mdp />} />  
+          <Route path="/nouveaumdp" element={<Nouveau_mdp />} />  
+          <Route path="/menu1" element={<Menu1 />} />  
+
         </Routes>
       </BrowserRouter>
     </div>

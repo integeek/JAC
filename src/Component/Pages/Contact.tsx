@@ -1,7 +1,7 @@
 //page de contact
 import "./Contact.css"
-import Navigation from "../navigation/Navigation"
-import Footer from "../footer/Footer"
+import Navigation from "../Navigation/Navigation"
+import Footer from "../Footer/Footer"
 
 import { LocationOn, Email, Facebook,LocalPhone } from "@mui/icons-material"
 

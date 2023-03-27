@@ -1,5 +1,5 @@
-import Navigation from "../navigation/Navigation"
-import Footer from "../footer/Footer"
+import Navigation from "../Navigation/Navigation"
+import Footer from "../Footer/Footer"
 
 function Mes_reservations() {
 

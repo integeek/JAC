@@ -1,4 +1,4 @@
-import Footer from "../footer/Footer"
+import Footer from "../Footer/Footer"
 import { Link } from "react-router-dom"
 import "./Accueil.css"
 

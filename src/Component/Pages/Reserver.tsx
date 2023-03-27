@@ -1,6 +1,6 @@
-import Navigation from "../navigation/Navigation"
+import Navigation from "../Navigation/Navigation"
 import { HiLocationMarker} from "react-icons/hi"
-import Footer from "../footer/Footer"
+import Footer from "../Footer/Footer"
 
 function Reserver() {
   document.body.classList.add("theme-light")

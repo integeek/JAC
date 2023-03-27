@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import Navigation from "../navigation/Navigation"
-import Footer from "../footer/Footer"
+import Navigation from "../Navigation/Navigation"
+import Footer from "../Footer/Footer"
 function Compte() {
   const [firstName, setFirstName] = useState("John")
   const [lastName, setLastName] = useState("Doe")

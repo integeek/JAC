@@ -1,5 +1,5 @@
-import Footer from "../footer/Footer"
-import Navigation from "../navigation/Navigation"
+import Footer from "../Footer/Footer"
+import Navigation from "../Navigation/Navigation"
 //page pour voir ses réservations
 
 function Mentions() {

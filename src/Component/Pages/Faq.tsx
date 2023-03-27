@@ -1,5 +1,5 @@
-import Navigation from "../navigation/Navigation"
-import Footer from "../footer/Footer"
+import Navigation from "../Navigation/Navigation"
+import Footer from "../Footer/Footer"
 import { Link } from "react-router-dom"
 //page pour voir ses réservations
 

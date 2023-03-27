@@ -1,6 +1,6 @@
 
 
-function New_mdp() {  
+function Nouveau_mdp() {  
   return (
     <div>
       <title>Nouveau mot de passe</title>
@@ -34,5 +34,5 @@ function New_mdp() {
 }
   
   
-export default New_mdp
+export default Nouveau_mdp
   
