@@ -1,9 +1,20 @@
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import { Link } from "react-router-dom"
-//page pour voir ses réservations
 
 function Faq() {
+  const [faqs, setFaqs] = useState<{ id: number; question: string; answer: string }[]>([]) //Initialise un état faqs avec un tableau vide de questions et réponses, et une fonction setFaqs pour mettre à jour l'état. Le type d'un élément du tableau est un objet avec les propriétés id (numérique), question (chaîne de caractères) et réponse (chaîne de caractères).
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://localhost:8000/faq") //requete get au back
+      setFaqs(response.data)
+    }
+    fetchData()
+  }, [])
+
   return (
     <div>
       <Navigation />
@@ -11,34 +22,16 @@ function Faq() {
       <br />
       <p className="text-4xl md:text-lg">Foire aux questions</p>     
       <br />
-      <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16 mb-4 rounded-box">
-        <div className="collapse-title bg-blue-400 text-xl font-medium">
-    Question 1 
+      {faqs.map(faq => ( //Parcourir le tableau faqs et faire un element par réponse
+        <div tabIndex={0} key={faq.id} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16 mb-4 rounded-box">
+          <div className="collapse-title bg-blue-400 text-xl font-medium">
+            {faq.question}
+          </div>
+          <div className="collapse-content" style={{ textAlign: "left" }}> 
+            <p>{faq.answer}</p>
+          </div>
         </div>
-        <div className="collapse-content" style={{ textAlign: "left" }}> 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et mattis ex, vitae scelerisque ipsum. </p>
-        </div>
-      </div>
-      <br /> 
-      <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16  mb-4 rounded-box">
-        <div className="collapse-title bg-blue-400 text-xl font-medium">
-    Question 2
-        </div>
-        <div className="collapse-content" style={{ textAlign: "left" }}> 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et mattis ex, vitae scelerisque ipsum. </p>
-        </div>
-      </div>
-
-      <br /> 
-
-      <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 mr-16 ml-16 mb-4 rounded-box">
-        <div className="collapse-title bg-blue-400 text-xl font-medium">
-    Question 3
-        </div>
-        <div className="collapse-content" style={{ textAlign: "left" }}> 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et mattis ex, vitae scelerisque ipsum. </p>
-        </div>
-      </div>
+      ))}
       <br /><br />
       <p className="text-black">Votre question n'y est pas ? Rendez-vous sur la <Link to="/contact" className="text-black hover:underline">page de contact</Link> </p>
       
@@ -48,7 +41,3 @@ function Faq() {
 }
 
 export default Faq
-
-
-
-

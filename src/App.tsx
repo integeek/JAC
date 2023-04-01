@@ -20,7 +20,7 @@ import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
 function App() {
   return (
     <div className ="App">
-      <link rel="shortcut icon" type="image/png" href="https://www.lad.fr/sites/default/files/LOGO_LAD_favicon.png"/>
+      <link rel="shortcut icon" type="image/png" href="https://www.lad.fr/sites/default/files/LOGO_LAD_favicon.png" title="Logo Les ailes déployées"/>
       <BrowserRouter> 
         <Routes>
           <Route path="/" element={<Home />} />     
