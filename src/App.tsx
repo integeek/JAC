@@ -13,8 +13,10 @@ import Connexion from "./Component/Pages/Connexion"
 import Inscription from "./Component/Pages/Inscription"
 import Acceuil from "./Component/Pages/Accueil"
 import Mdp_oublie from "./Component/Pages/Mdp_oublie"
-import Menu1 from "./Component/Pages/Menu1"
+import Menu1 from "./Component/Pages/Menus/Menu1"
 import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
+import Editer from "./Component/Pages/Editer"
+import Erreur404 from "./Component/Pages/Erreur404" 
 
 // relier les différentes pages avec l'url
 function App() {
@@ -36,6 +38,10 @@ function App() {
           <Route path="/mdpoublie" element={<Mdp_oublie />} />  
           <Route path="/nouveaumdp" element={<Nouveau_mdp />} />  
           <Route path="/menu1" element={<Menu1 />} />  
+          <Route path="/editer" element={<Editer />} />  
+          <Route path="*" element={<Erreur404 />} />  
+
+
 
         </Routes>
       </BrowserRouter>

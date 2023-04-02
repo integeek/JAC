@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
+import Axios from "../../Axios"
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import { Link } from "react-router-dom"
@@ -9,7 +9,7 @@ function Faq() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:8000/faq") //requete get au back
+      const response = await Axios.get("http://localhost:8000/faq") //requete get au back
       setFaqs(response.data)
     }
     fetchData()
