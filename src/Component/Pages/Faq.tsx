@@ -9,7 +9,7 @@ function Faq() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await Axios.get("http://localhost:8000/faq") //requete get au back
+      const response = await Axios.get("faq") //requete get au back
       setFaqs(response.data)
     }
     fetchData()

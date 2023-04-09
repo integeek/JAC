@@ -1,12 +1,15 @@
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import { useState } from "react"
+import Axios from "../../Axios"
 
 function Editer() {
 
   
   const [pageSelectionnee, setPageSelectionnee] = useState("")
   const [actionSelectionnee, setActionSelectionnee] = useState("")
+  const [question, setQuestion] = useState("")
+  const [reponse, setReponse] = useState("")
 
   const handlePageSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPageSelectionnee(event.target.value)
@@ -15,6 +18,22 @@ function Editer() {
 
   const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setActionSelectionnee(event.target.value)
+
+    const handleAjouterQuestion = () => {
+      const newQuestion = {
+        question: question,
+        reponse: reponse,
+      }
+    
+      Axios.post("http://localhost:8000/faq", newQuestion)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+    
   }
 
   return (
@@ -44,22 +63,17 @@ function Editer() {
             <option>Modifier une question</option>
             <option>Supprimer une question</option>
           </select>
-          {actionSelectionnee === "Ajouter une question" && (
-            <div>
-              <br />
-              <div className="flex justify-center items-center">
-                <div>
-                  <p>Entrez votre question</p>
-                  <input type="text" placeholder="Votre question" className="input input-bordered w-full max-w-xs" />
-                  <p>Entrez la réponse</p>
-                  <textarea id="message" rows={4} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="La réponse"></textarea>
-                </div>
+          {actionSelectionnee === "Ajouter une question" && ( //probleme au niveau des contours des zones de texte
+            <div className="flex justify-center items-center">
+              <div className="w-full flex flex-col items-center">
+                <p className="m-4">Entrez votre question</p>
+                <input type="text" placeholder="Votre question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={question} onChange={(e) => setQuestion(e.target.value)} />
+                <p className="m-4">Entrez la réponse</p>
+                <textarea id="message" rows={4} className="block p-2.5 w-full max-w-xs text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="La réponse" value={reponse.toString()}></textarea>
+                <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
               </div>
-
-
             </div>
 
-              
           )}
 
           {actionSelectionnee === "Modifier une question" && (

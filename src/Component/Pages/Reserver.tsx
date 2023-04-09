@@ -22,7 +22,7 @@ function Reserver() {
               <p>4 allée des lilas, 75019 Paris</p>
             </div>
             <div className="card-actions justify-end">
-              <button className="btn btn-info  btn-active">Voir plus</button>
+              <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">Voir plus</button>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@ function Reserver() {
             <h2 className="card-title">2eme Restaurant</h2>
             <p>1 allee de la plaine, 75006 Paris</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-info  btn-active">Voir plus</button>
+              <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">Voir plus</button>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@ function Reserver() {
             <h2 className="card-title">3eme Restaurant</h2>
             <p>93 Rue des Martyrs, 75002 Paris</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-info  btn-active">Voir plus</button>
+              <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">Voir plus</button>
             </div>
           </div>
         </div>
