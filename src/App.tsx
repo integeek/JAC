@@ -7,16 +7,16 @@ import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
 import Mes_reservations from "./Component/Pages/Mes_reservations"
-import Mentions from "./Component/Pages/Mentions"
+import Mentions from "./Component/Pages/mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
 import Inscription from "./Component/Pages/Inscription"
 import Acceuil from "./Component/Pages/Accueil"
-import Mdp_oublie from "./Component/Pages/Mdp_oublie"
 import Menu1 from "./Component/Pages/Menus/Menu1"
 import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
 import Editer from "./Component/Pages/Editer"
 import Erreur404 from "./Component/Pages/Erreur404" 
+import Mdp_oublie from "./Component/Pages/mdp_oublie"
 
 // relier les différentes pages avec l'url
 function App() {

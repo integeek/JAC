@@ -18,7 +18,7 @@ function Navigation() {
               Compte
               <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
             </a>
-            <ul className="p-2 bg-base-100 rounded shadow-xl z-50">
+            <ul className="p-2 bg-base-100 rounded shadow-xl">
               <li><Link to="/compte" className="active:bg-gray-200">Mon compte</Link></li>
               <li><a className="active:bg-gray-200">Se déconnecter</a></li>
               <li><Link to="/editer" className="active:bg-gray-200">Editer</Link></li>
