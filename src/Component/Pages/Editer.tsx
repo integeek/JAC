@@ -1,40 +1,52 @@
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Axios from "../../Axios"
 
 function Editer() {
 
+  interface Restaurant {
+    id: string;
+    name: string;
+    // autres propriétés du restaurant
+  }
   
   const [pageSelectionnee, setPageSelectionnee] = useState("")
   const [actionSelectionnee, setActionSelectionnee] = useState("")
   const [question, setQuestion] = useState("")
   const [reponse, setReponse] = useState("")
+  const [restaurant, setRestaurant] = useState<Restaurant[]>([])
+
 
   const handlePageSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPageSelectionnee(event.target.value)
     setActionSelectionnee("")
   }
-
+  
   const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setActionSelectionnee(event.target.value)
-
-    const handleAjouterQuestion = () => {
-      const newQuestion = {
-        question: question,
-        reponse: reponse,
-      }
-    
-      Axios.post("http://localhost:8000/faq", newQuestion)
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-    
   }
+  const handleAjouterQuestion = () => {
+    const newQuestion = {
+      question: question,
+      reponse: reponse,
+    }
+  
+    Axios.post("http://localhost:8000/faq", newQuestion)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  
+    
+  useEffect(() => {
+    Axios.get("/restaurant", { responseType: "json" }).then(response => {
+      setRestaurant(response.data)
+    })
+  }, []) 
 
   return (
     <div>
@@ -98,7 +110,51 @@ function Editer() {
 
       {pageSelectionnee === "Les restaurants" &&
         <div>
-          <p>Test des restaurants</p>
+          <div className="center">
+            <table className="mx-auto my-8">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">Les restaurants</th>
+                </tr>
+              </thead>
+              <tbody>
+                {restaurant.map(restaurant => (
+                  <tr key={restaurant.id}>
+                    <td className="border b border-black order-4 px-4 py-2">{restaurant.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>
+
+          <br />
+          <p>Choisissez ce que vous voulez faire avec les restaurants</p>
+          <br />
+          <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
+            <option disabled selected>Choisissez votre action</option>
+            <option>Ajouter un restaurant</option>
+            <option>Supprimer un restaurant</option>
+            <option>Modifier un restaurant</option>
+          </select>
+
+          {actionSelectionnee === "Ajouter un restaurant" && (
+            <div>
+              <p>Ajouter un restaurant</p>
+            </div>
+          )}
+
+          {actionSelectionnee === "Supprimer un restaurant" && (
+            <div>
+              <p>Supprimer un restaurant</p>
+            </div>
+          )}
+
+          {actionSelectionnee === "Modifier un restaurant" && (
+            <div>
+              <p>Modification d'un restaurant</p>
+            </div>
+          )}
         </div>
       }
 
