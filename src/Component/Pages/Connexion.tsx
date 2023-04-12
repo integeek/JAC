@@ -17,7 +17,8 @@ function Connexion() {
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-black">Votre email</label>
-                  <input type="email" name="email" id="email" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="nom@mail.com" required/>
+                  <input type="email" name="email" id="email" className=" peer bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="nom@mail.com"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
+                  <p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Votre mot de passe</label>

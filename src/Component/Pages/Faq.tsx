@@ -23,7 +23,7 @@ function Faq() {
       <p className="text-4xl md:text-lg">Foire aux questions</p>     
       <br />
       {faqs.map(faq => ( //Parcourir le tableau faqs et faire un element par réponse
-        <div tabIndex={0} key={faq.id} className="mb-4 ml-16 mr-16 border collapse collapse-plus border-base-300 bg-base-100 rounded-box">
+        <div tabIndex={0} key={faq.id} className="mb-4 ml-16 mr-16 border collapse collapse-plus border-base-300 bg-base-100 rounded-box z-0">
           <div className="text-xl font-medium bg-blue-400 collapse-title">
             {faq.question}
           </div>
