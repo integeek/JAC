@@ -10,7 +10,7 @@ function Mentions() {
       <br />
       <p className="text-4xl md:text-lg">Mentions légales</p>     
       <p className="m-16 text-justify ">
-Copyright : Ambre Giraud-Lanza, JAC 2023
+Copyright : Ambre Giraud-Lanza, JAC 2023,
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu feugiat massa. Proin faucibus mauris ut nulla viverra tempor. Etiam elementum porttitor leo, et facilisis nunc. Vivamus eget nibh tincidunt, posuere odio in, iaculis tellus. Nulla et magna a nisl pretium facilisis sit amet eget mi. Integer scelerisque mi ac enim convallis interdum. Ut eleifend lorem lacus, sit amet bibendum tellus ultrices non. Vestibulum mattis, nulla sed aliquam pellentesque, turpis nisi varius tortor, eu posuere dolor nunc id risus. Duis iaculis purus ante. Pellentesque vestibulum, sem et auctor tristique, magna neque egestas mauris, et fringilla ex nulla sit amet nibh. Nullam porttitor odio est, vel tempor urna vehicula in. Praesent et velit varius, porta nunc hendrerit, eleifend diam. Cras ut pretium nibh, vel egestas nisi.
 
