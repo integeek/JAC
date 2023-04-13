@@ -6,7 +6,7 @@ function Mdp_oublie() {
       <title>Mot de passe oublié</title>
       <div className="flex flex-col items-center justify-center h-screen">
         <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
-          <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
+          <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo LAD"/>
         </a>
         <div className="max-w-lg  items-center center mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-dark mb-2 md:text-2xl">

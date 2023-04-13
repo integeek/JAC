@@ -15,7 +15,7 @@ import Menu1 from "./Component/Pages/Menus/Menu1"
 import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
 import Editer from "./Component/Pages/Editer"
 import Erreur404 from "./Component/Pages/Erreur404" 
-import Mdp_oublie from "./Component/Pages/Mdp_oublie"
+import Mdp_oublie from "./Component/Pages/mdp_oublie"
 // relier les différentes pages avec l'url
 function App() {
   return (
