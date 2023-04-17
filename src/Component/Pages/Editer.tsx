@@ -16,6 +16,8 @@ function Editer() {
   const [question, setQuestion] = useState("")
   const [reponse, setReponse] = useState("")
   const [restaurant, setRestaurant] = useState<Restaurant[]>([])
+  const [nouveauRestaurant, setNouveauRestaurant] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
 
   const handlePageSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -31,7 +33,27 @@ function Editer() {
       question: question,
       reponse: reponse,
     }
+  }
+  const handleNouveauRestaurantNom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNouveauRestaurant(e.target.value)
+  }
   
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault()
+    try{
+      const response = await Axios.post("/restaurant", {
+        name: nouveauRestaurant,
+      })
+      console.log(response.data)
+      setNouveauRestaurant("")
+      setErrorMessage("")
+    } catch (error) {
+      console.error(error)
+      setErrorMessage("Une erreur est survenue lors de l'ajout du restaurant.")
+    }
+  }
+  
+  /*
     Axios.post("http://localhost:8000/faq", newQuestion)
       .then((response) => {
         console.log(response)
@@ -40,7 +62,7 @@ function Editer() {
         console.log(error)
       })
   }
-  
+  */
     
   useEffect(() => {
     Axios.get("/restaurant", { responseType: "json" }).then(response => {
@@ -111,7 +133,7 @@ function Editer() {
       {pageSelectionnee === "Les restaurants" &&
         <div>
           <div className="center">
-            <table className="mx-auto my-8">
+            <table className="mx-auto my-8"> 
               <thead>
                 <tr>
                   <th className="px-4 py-2">Les restaurants</th>
@@ -140,7 +162,16 @@ function Editer() {
 
           {actionSelectionnee === "Ajouter un restaurant" && (
             <div>
-              <p>Ajouter un restaurant</p>
+              <form onSubmit={handleSubmit}>
+                <div className="w-full flex flex-col items-center">
+                  <p className="m-4">Entrez le nom du restaurant</p>
+                  <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={handleNouveauRestaurantNom} className="input bg-gray-50 input-bordered w-full max-w-xs"/>
+                  <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+                  {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                  <br /><br />
+                </div>         
+                <br /><br />
+              </form>
             </div>
           )}
 
