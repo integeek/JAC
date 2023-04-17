@@ -8,7 +8,23 @@ function Editer() {
   interface Restaurant {
     id: string;
     name: string;
-    // autres propriétés du restaurant
+  }
+
+  interface Faq {
+    id: number;
+    question: string;
+    answer: string
+  }
+  
+  interface Menus {
+     id : string,
+     date: Date;
+     entree: string;
+     mainDish: string;
+     mainDishDescription: string;
+     dessert: string;
+     restaurantId: number;
+
   }
   
   const [pageSelectionnee, setPageSelectionnee] = useState("")
@@ -18,6 +34,9 @@ function Editer() {
   const [restaurant, setRestaurant] = useState<Restaurant[]>([])
   const [nouveauRestaurant, setNouveauRestaurant] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const [faqList, setFaqList] = useState<Faq[]>([])
+  const [menusList, setMenusList] = useState<Menus[]>([])
+
 
 
   const handlePageSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -34,10 +53,29 @@ function Editer() {
       reponse: reponse,
     }
   }
+
+  useEffect(() => {
+    Axios.get("/menus", { responseType: "json" }).then(response => {
+      setMenusList(response.data)
+    })
+  },[])
+
+  useEffect(() => {
+    Axios.get("/faq", { responseType: "json" }).then(response => {
+      setFaqList(response.data)
+    })
+  },[])
+
   const handleNouveauRestaurantNom = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNouveauRestaurant(e.target.value)
   }
   
+  useEffect(() => {
+    Axios.get("/restaurant", { responseType: "json" }).then(response => {
+      setRestaurant(response.data)
+    })
+  }, []) 
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     try{
@@ -53,6 +91,8 @@ function Editer() {
     }
   }
   
+
+
   /*
     Axios.post("http://localhost:8000/faq", newQuestion)
       .then((response) => {
@@ -64,11 +104,7 @@ function Editer() {
   }
   */
     
-  useEffect(() => {
-    Axios.get("/restaurant", { responseType: "json" }).then(response => {
-      setRestaurant(response.data)
-    })
-  }, []) 
+
 
   return (
     <div>
@@ -88,7 +124,25 @@ function Editer() {
 
       {pageSelectionnee === "La Faq" && (
         <div>
-          <br />
+          <div className="center">
+            <table className="mx-auto my-8"> 
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">La Faq</th>
+                </tr>
+              </thead>
+              <tbody>
+                {faqList.map(faq => (
+                  <tr key={faq.id}>
+                    <td className="border b border-black order-4 px-4 py-2">{faq.question}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>
+
+
           <p>Choisissez ce que vous voulez faire avec la Faq</p>
           <br />
           <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
@@ -126,7 +180,23 @@ function Editer() {
 
       {pageSelectionnee === "Les menus" &&
         <div>
-          <p>Test des menus</p>
+          <div className="center">
+            <table className="mx-auto my-8"> 
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">Les menus</th>
+                </tr>
+              </thead>
+              <tbody>
+                {menusList.map(menu => (
+                  <tr key={menu.id}>
+                    <td className="border b border-black order-4 px-4 py-2">{menu.mainDish}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>    
         </div>
       }
 
