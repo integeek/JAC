@@ -3,6 +3,7 @@ import { HiLocationMarker } from "react-icons/hi"
 import Footer from "../Footer/Footer"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 interface Restaurant {
   id: string;
@@ -31,6 +32,10 @@ function Reserver() {
     <div>
       <Navigation />
       <title>Réserver</title>
+      <Link to="/editrestaurant" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Éditer
+      </Link>
+
       <br />
       <p className="text-4xl md:text-lg">Réserver un Restaurant</p>
       <div className="grid grid-cols-3 gap-4 my-16 sm:gird-cols-4 lg:grid-cols-8 m-8 p-8 mx-auto">

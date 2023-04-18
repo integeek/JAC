@@ -18,6 +18,9 @@ function Faq() {
   return (
     <div>
       <Navigation />
+      <Link to="/editfaq" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Éditer
+      </Link>
       <title>Faq</title>
       <br />
       <p className="text-4xl md:text-lg">Foire aux questions</p>     

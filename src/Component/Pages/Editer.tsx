@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer"
 import { useEffect, useState } from "react"
 import Axios from "../../Axios"
 
+
 function Editer() {
 
   interface Restaurant {
@@ -24,9 +25,18 @@ function Editer() {
      mainDishDescription: string;
      dessert: string;
      restaurantId: number;
-
   }
   
+  interface User {
+    id: string;
+    email: string;
+    firstname: string;
+    name: string;
+    password: string;
+    role: string;
+    enabled: boolean;
+  }
+
   const [pageSelectionnee, setPageSelectionnee] = useState("")
   const [actionSelectionnee, setActionSelectionnee] = useState("")
   const [question, setQuestion] = useState("")
@@ -36,7 +46,7 @@ function Editer() {
   const [errorMessage, setErrorMessage] = useState("")
   const [faqList, setFaqList] = useState<Faq[]>([])
   const [menusList, setMenusList] = useState<Menus[]>([])
-
+  const [userList, setUserList] = useState<User[]>([])
 
 
   const handlePageSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -57,6 +67,12 @@ function Editer() {
   useEffect(() => {
     Axios.get("/menus", { responseType: "json" }).then(response => {
       setMenusList(response.data)
+    })
+  },[])
+
+  useEffect(() => {
+    Axios.get("/user", { responseType: "json" }).then(response => {
+      setUserList(response.data)
     })
   },[])
 
@@ -103,7 +119,6 @@ function Editer() {
       })
   }
   */
-    
 
 
   return (
@@ -196,7 +211,15 @@ function Editer() {
               </tbody>
             </table>
 
-          </div>    
+          </div> 
+          <p>Choisissez ce que vous voulez faire avec les menus</p>
+          <br />
+          <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
+            <option disabled selected>Choisissez votre action</option>
+            <option>Ajouter un menus</option>
+            <option>Modifier un menus</option>
+            <option>Supprimer un menus</option>
+          </select>   
         </div>
       }
 
@@ -261,7 +284,34 @@ function Editer() {
 
       {pageSelectionnee === "Les utilisateurs" &&
         <div>
-          <p>Test des users</p>
+          <div className="center">
+            <table className="mx-auto my-8"> 
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">Les utilisateurs</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userList.map(user => (
+                  <tr key={user.id}>
+                    <td className="border b border-black order-4 px-4 py-2">{user.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>
+
+          <p>Choisissez ce que vous voulez faire avec les utilisateurs</p>
+          <br />
+          <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
+            <option disabled selected>Choisissez votre action</option>
+            <option>Approuver un utilisateur</option>
+            <option>Modifier un utilisateur</option>
+            <option>Supprimer un utilisateur</option>
+            <option>Désactiver un utilisateur</option>
+
+          </select>      
         </div>
       }
 
