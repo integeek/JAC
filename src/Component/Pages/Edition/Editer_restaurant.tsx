@@ -16,9 +16,6 @@ function Editer_restaurant() {
     const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
     const [nouveauRestaurant, setNouveauRestaurant] = useState("") // Pour créer un nouveau restaurant
     const [actionSelectionnee, setActionSelectionnee] = useState("") // Pour choisir quelle action à effectuer
-    const [restaurantAModifier, setRestaurantAModifier] = useState<{id: string, name: string}>({id: "", name: ""}) //Pour modifier les restaurants
-
-
 
     // Récuperer les données des restaurants dans la BDD
     useEffect(() => {
@@ -65,31 +62,8 @@ function Editer_restaurant() {
         setErrorMessage("Une erreur est survenue lors de la suppression du restaurant.")
       }
     }
-    
-    const handleModificationNomRestaurant = (restaurant: Restaurant) => {
-      setRestaurantAModifier({id: restaurant.id, name: restaurant.name})
-    }
   
-    // ... --> copier toutes les propriétés en remplaçant juste le name
-    const handleNouveauNomRestaurant = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRestaurantAModifier({...restaurantAModifier, name: e.target.value})
-    }
     
-    const handleSubmitModificationNom = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-      e.preventDefault()
-      try{
-  
-        const response = await Axios.put(`/restaurant/${restaurantAModifier?.id}`, {
-          name: restaurantAModifier?.name,
-        })
-        console.log(response.data)
-        setRestaurantAModifier(undefined)
-        setErrorMessage("")
-      } catch (error) {
-        console.error(error)
-        setErrorMessage("Une erreur est survenue lors de la modification du nom du restaurant.")
-      }
-    }
     const handleNouveauRestaurantNom = (e: React.ChangeEvent<HTMLInputElement>) => {
       setNouveauRestaurant(e.target.value)
     }
@@ -122,7 +96,7 @@ function Editer_restaurant() {
                       </svg>
                     </button>
                   </td>
-                  <td className="border b border-black order-4 px-4 py-2"><button onClick={() => handleModificationNomRestaurant(restaurant)}>Modifier</button></td>
+                  <td className="border b border-black order-4 px-4 py-2"><button>Modifier</button></td>
                 </tr>
               ))}
             </tbody>
@@ -148,21 +122,6 @@ function Editer_restaurant() {
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
                 <br /><br />
               </div>         
-              <br /><br />
-            </form>
-          </div>
-        )}
-
-        {restaurantAModifier.id && (
-          <div>
-            <form onSubmit={handleSubmitModificationNom}>
-              <div className="w-full flex flex-col items-center">
-                <p className="m-4">Entrez le nouveau nom du restaurant</p>
-                <input type="text" placeholder="Nouveau nom du restaurant" value={restaurantAModifier.name} onChange={handleNouveauNomRestaurant} className="input bg-gray-50 input-bordered w-full max-w-xs"/>
-                <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
-                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                <br /><br />
-              </div>
               <br /><br />
             </form>
           </div>
