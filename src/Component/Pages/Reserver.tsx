@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 interface Restaurant {
   id: string;
   name: string;
-  // Ajoutez d'autres propriétés si nécessaire
+  address: string; // Ajout de la propriété address
 }
 
 function Reserver() {
@@ -33,7 +33,7 @@ function Reserver() {
       <Navigation />
       <title>Réserver</title>
       <Link to="/editrestaurant" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-  Éditer
+        Éditer
       </Link>
 
       <br />
@@ -51,7 +51,7 @@ function Reserver() {
               <h2 className="card-title">{restaurant.name}</h2>
               <div className="flex flex-row space-x-2">
                 <HiLocationMarker className="mr-2" />
-                <p>Test de l'adresse</p>
+                <p>{restaurant.address}</p>
               </div>
               <div className="card-actions justify-end">
                 <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">

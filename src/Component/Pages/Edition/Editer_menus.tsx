@@ -64,12 +64,12 @@ function Editer_menus() {
         // Mettre à jour l'état faqList avec la nouvelle question
         setMenusList([...menusList, response.data])
 
-        setNouvelleDate("")
+        setNouvelleDate("2023-03-20T23:00:00.000Z")
         setNouvelleEntree("")
         setNouveauPlat("")
         setNouvelleDescription("")
         setNouveauDessert("")
-        setNouveaurestaurantId("")
+        setNouveaurestaurantId("1")
       })
       .catch(() => {
         setErrorMessage("Une erreur s'est produite.")

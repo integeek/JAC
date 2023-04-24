@@ -14,6 +14,7 @@ function Editer_restaurant() {
 
     const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
     const [nouveauRestaurant, setNouveauRestaurant] = useState("") // Pour créer un nouveau restaurant
+    const [nouvelleAdresse, setNouvelleAdresse] = useState("") 
     const [restaurantList, setRestaurantList] = useState<Restaurant[]>([])
 
     // Récuperer les données des restaurants dans la BDD
@@ -24,15 +25,16 @@ function Editer_restaurant() {
     }, []) 
     
     const handleAjouterRestaurant = () => {
-      // Vérifier si la question et la réponse sont remplies
-      if (!nouveauRestaurant.trim()) {
-        setErrorMessage("Le nom du restaurant ne peut pas être vide.")
+      // Vérifier si le nom et l'adresse sont remplies
+      if (nouvelleAdresse.trim() === "" || nouveauRestaurant.trim() === "") {
+        setErrorMessage("Veuillez remplir tous les champs.")
         return
-      } 
+      }
       
       // Envoyer la requête POST pour ajouter la nouvelle question
       Axios.post("/restaurant", {
         name: nouveauRestaurant,
+        address: nouvelleAdresse,
       })
         .then((response) => {
           // Mettre à jour l'état faqList avec la nouvelle question
@@ -40,6 +42,7 @@ function Editer_restaurant() {
         
           // Réinitialiser les états pour la nouvelle question et sa réponse
           setNouveauRestaurant("")
+          setNouvelleAdresse("")
         })
         .catch(() => {
           setErrorMessage("Une erreur s'est produite.")
@@ -114,6 +117,8 @@ function Editer_restaurant() {
             <div className="w-full flex flex-col items-center">
               <p className="m-4">Entrez le nom du restaurant</p>
               <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
+              <p className="m-4">Entrez l'adresse du restaurant</p>
+              <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
               <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
               {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <br /><br />
