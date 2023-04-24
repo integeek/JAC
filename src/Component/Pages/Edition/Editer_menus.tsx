@@ -16,12 +16,15 @@ function Editer_menus() {
     restaurantId: number;
  }
 
-  const [actionSelectionnee, setActionSelectionnee] = useState("")
   const [menusList, setMenusList] = useState<Menus[]>([])
+  const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
+  const [nouvelleEntree, setNouvelleEntree] = useState("") // Pour créer un nouveau restaurant
+  const [nouveauPlat, setNouveauPlat] = useState("") // Pour créer un nouveau restaurant
+  const [nouveauDessert, setNouveauDessert] = useState("") // Pour créer un nouveau restaurant
+  const [nouvelleDescription, setNouvelleDescription] = useState("") // Pour créer un nouveau restaurant
+  const [nouveauRestaurantId, setNouveaurestaurantId] = useState("") // Pour créer un nouveau restaurant
+  const [nouvelleDate, setNouvelleDate] = useState("") // Pour créer un nouveau restaurant
 
-  const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setActionSelectionnee(event.target.value)
-  }
 
   useEffect(() => {
     Axios.get("/menus", { responseType: "json" }).then(response => {
@@ -29,6 +32,49 @@ function Editer_menus() {
     })
   },[])
 
+  const handleDeleteMenus = async (id: string): Promise<void> => {
+    try {
+      await Axios.delete(`/menus/${id}`)
+      // Mettre à jour la liste des menus après la suppression
+      const response = await Axios.get("/menus")
+      setMenusList(response.data)
+      setErrorMessage("")
+    } catch (error) {
+      console.error(error)
+      setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
+    }
+  }
+
+  const handleAjouterMenus = () => {
+    // Vérifier si la question et la réponse sont remplies
+    if (nouveauDessert.trim() === "" || nouveauPlat.trim() === "" || nouveauRestaurantId.trim() === "" || nouvelleDate.trim() === "" || nouvelleDescription.trim() === "" || nouvelleEntree.trim() === "") {
+      setErrorMessage("Veuillez remplir tous les champs.")
+      return
+    }
+    // Envoyer la requête POST pour ajouter la nouvelle question
+    Axios.post("/menus", {
+      date: nouvelleDate,
+      entree: nouvelleEntree,
+      mainDish: nouveauPlat,
+      mainDishDescription: nouvelleDescription,
+      dessert: nouveauDessert,
+      restaurantId: nouveauRestaurantId,
+    })
+      .then((response) => {
+        // Mettre à jour l'état faqList avec la nouvelle question
+        setMenusList([...menusList, response.data])
+
+        setNouvelleDate("")
+        setNouvelleEntree("")
+        setNouveauPlat("")
+        setNouvelleDescription("")
+        setNouveauDessert("")
+        setNouveaurestaurantId("")
+      })
+      .catch(() => {
+        setErrorMessage("Une erreur s'est produite.")
+      })
+  }
 
   return (
     <div>
@@ -39,26 +85,69 @@ function Editer_menus() {
           <thead>
             <tr>
               <th className="px-4 py-2">Les menus</th>
+              <th className="px-4 py-2">Supprimer</th>
+              <th className="px-4 py-2">Modifier</th>
             </tr>
           </thead>
           <tbody>
             {menusList.map(menu => (
               <tr key={menu.id}>
                 <td className="border b border-black order-4 px-4 py-2">{menu.mainDish}</td>
+                <td className="border b border-black order-4 px-4 py-2">
+                  <button onClick={() => handleDeleteMenus(menu.id)} className="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <line x1="4" y1="7" x2="20" y2="7" />
+                      <line x1="10" y1="11" x2="10" y2="17" />
+                      <line x1="14" y1="11" x2="14" y2="17" />
+                      <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                      <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                    </svg>
+                  </button>
+                </td>
+                <td className="border b border-black order-3 px-4 py-2">
+                  <button className="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                      <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                      <line x1="16" y1="5" x2="19" y2="8" />
+                    </svg>
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
 
       </div> 
-      <p>Choisissez ce que vous voulez faire avec les menus</p>
-      <br />
-      <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
-        <option disabled selected>Choisissez votre action</option>
-        <option>Ajouter un menus</option>
-        <option>Modifier un menus</option>
-        <option>Supprimer un menus</option>
-      </select>   
+      <div>
+        <p><b>Ajouter un menus :</b></p>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          handleAjouterMenus()
+        }}>
+          <div className="w-full flex flex-col items-center">
+            <p className="m-4">Entrez la date</p>
+            <input type="text" placeholder="Date du jour" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleDate} onChange={(e) => setNouvelleDate(e.target.value)}required/>
+            <p className="m-4">Entrez le nom de l'entrée</p>
+            <input type="text" placeholder="Nom de l'entrée" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleEntree} onChange={(e) => setNouvelleEntree(e.target.value)} required/>
+            <p className="m-4">Entrez le nom du plat </p>
+            <input type="text" placeholder="Nom du plat" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauPlat} onChange={(e) => setNouveauPlat(e.target.value)} required/>
+            <p className="m-4">Entrez la description du plat</p>
+            <input type="text" placeholder="Description du plat" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} required/>
+            <p className="m-4">Entrez le nom du dessert</p>
+            <input type="text" placeholder="Nom du dessert" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauDessert} onChange={(e) => setNouveauDessert(e.target.value)} required/>
+            <p className="m-4">Entrez le numéro du restaurant</p>
+            <input type="text" placeholder="Numéro du restaurant" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauRestaurantId} onChange={(e) => setNouveaurestaurantId(e.target.value)} required/>
+            <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            <br /><br />
+          </div>         
+          <br /><br />
+        </form>
+      </div>
+
       <Footer />
     </div>
   )

@@ -12,54 +12,54 @@ function Editer_restaurant() {
         name: string;
       }
 
-    const [restaurant, setRestaurant] = useState<Restaurant[]>([]) //Pour afficher les restaurants
     const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
     const [nouveauRestaurant, setNouveauRestaurant] = useState("") // Pour créer un nouveau restaurant
+    const [restaurantList, setRestaurantList] = useState<Restaurant[]>([])
 
     // Récuperer les données des restaurants dans la BDD
     useEffect(() => {
       Axios.get("/restaurant", { responseType: "json" }).then(response => {
-        setRestaurant(response.data)
+        setRestaurantList(response.data)
       })
     }, []) 
     
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-      e.preventDefault()
-
-      //Empecher de mettre un nom de restaurant vide
+    const handleAjouterRestaurant = () => {
+      // Vérifier si la question et la réponse sont remplies
       if (!nouveauRestaurant.trim()) {
         setErrorMessage("Le nom du restaurant ne peut pas être vide.")
         return
       } 
-      // Mettre un nouveau restaurant
-      try{
-        const response = await Axios.post("/restaurant", {
-          name: nouveauRestaurant,
+      
+      // Envoyer la requête POST pour ajouter la nouvelle question
+      Axios.post("/restaurant", {
+        name: nouveauRestaurant,
+      })
+        .then((response) => {
+          // Mettre à jour l'état faqList avec la nouvelle question
+          setRestaurantList([...restaurantList, response.data])
+        
+          // Réinitialiser les états pour la nouvelle question et sa réponse
+          setNouveauRestaurant("")
         })
-        console.log(response.data)
-        setNouveauRestaurant("")
-        setErrorMessage("")
-      } catch (error) {
-        console.error(error)
-        setErrorMessage("Une erreur est survenue lors de l'ajout du restaurant.")
-      }
+        .catch(() => {
+          setErrorMessage("Une erreur s'est produite.")
+        })
     }
+    
     // Supprimer un restaurant
     const handleDeleteRestaurant = async (id: string): Promise<void> => {
       try {
         await Axios.delete(`/restaurant/${id}`)
         // Mettre à jour la liste des restaurants après la suppression
         const response = await Axios.get("/restaurant")
-        setRestaurant(response.data)
+        setRestaurantList(response.data)
         setErrorMessage("")
       } catch (error) {
         console.error(error)
         setErrorMessage("Une erreur est survenue lors de la suppression du restaurant.")
       }
     }
-    const handleNouveauRestaurantNom = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNouveauRestaurant(e.target.value)
-    }
+
     return (
       <div>
         <title>Editer les restaurants</title>
@@ -74,8 +74,8 @@ function Editer_restaurant() {
               </tr>
             </thead>
             <tbody>
-              {restaurant.map((restaurant, index) => (
-                <tr key={`${restaurant.id}-${index}`}>
+              {restaurantList.map((restaurant) => (
+                <tr key={restaurant.id}>
                   <td className="border b border-black order-4 px-4 py-2">{restaurant.name}</td>
                   <td className="border b border-black order-4 px-4 py-2">
                     <button onClick={() => handleDeleteRestaurant(restaurant.id)} className="btn btn-ghost btn-circle">
@@ -107,10 +107,13 @@ function Editer_restaurant() {
         </div>
         <div>
           <p><b>Ajouter un restaurant :</b></p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            handleAjouterRestaurant()
+          }}>
             <div className="w-full flex flex-col items-center">
               <p className="m-4">Entrez le nom du restaurant</p>
-              <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={handleNouveauRestaurantNom} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
+              <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
               <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
               {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <br /><br />
