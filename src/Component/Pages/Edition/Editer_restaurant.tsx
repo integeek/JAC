@@ -15,7 +15,6 @@ function Editer_restaurant() {
     const [restaurant, setRestaurant] = useState<Restaurant[]>([]) //Pour afficher les restaurants
     const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
     const [nouveauRestaurant, setNouveauRestaurant] = useState("") // Pour créer un nouveau restaurant
-    const [actionSelectionnee, setActionSelectionnee] = useState("") // Pour choisir quelle action à effectuer
 
     // Récuperer les données des restaurants dans la BDD
     useEffect(() => {
@@ -24,10 +23,6 @@ function Editer_restaurant() {
       })
     }, []) 
     
-    const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setActionSelectionnee(event.target.value)
-    }
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault()
 
@@ -62,8 +57,6 @@ function Editer_restaurant() {
         setErrorMessage("Une erreur est survenue lors de la suppression du restaurant.")
       }
     }
-  
-    
     const handleNouveauRestaurantNom = (e: React.ChangeEvent<HTMLInputElement>) => {
       setNouveauRestaurant(e.target.value)
     }
@@ -81,8 +74,8 @@ function Editer_restaurant() {
               </tr>
             </thead>
             <tbody>
-              {restaurant.map(restaurant => (
-                <tr key={restaurant.id}>
+              {restaurant.map((restaurant, index) => (
+                <tr key={`${restaurant.id}-${index}`}>
                   <td className="border b border-black order-4 px-4 py-2">{restaurant.name}</td>
                   <td className="border b border-black order-4 px-4 py-2">
                     <button onClick={() => handleDeleteRestaurant(restaurant.id)} className="btn btn-ghost btn-circle">
@@ -96,37 +89,36 @@ function Editer_restaurant() {
                       </svg>
                     </button>
                   </td>
-                  <td className="border b border-black order-4 px-4 py-2"><button>Modifier</button></td>
+                  <td className="border b border-black order-3 px-4 py-2">
+                    <button className="btn btn-ghost btn-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                        <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                        <line x1="16" y1="5" x2="19" y2="8" />
+                      </svg>
+                    </button>
+                  </td>
+
                 </tr>
               ))}
             </tbody>
           </table>
-
         </div>
-        <p>Choisissez ce que vous voulez faire avec les restaurants</p>
-        <br />
-        <select className="select w-full max-w-xs bg-base-100 shadow-xl" onChange={handleActionSelection}>
-          <option disabled selected>Choisissez votre action</option>
-          <option>Ajouter un restaurant</option>
-          <option>Supprimer un restaurant</option>
-        </select>   
-
-        
-        {actionSelectionnee === "Ajouter un restaurant" && (
-          <div>
-            <form onSubmit={handleSubmit}>
-              <div className="w-full flex flex-col items-center">
-                <p className="m-4">Entrez le nom du restaurant</p>
-                <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={handleNouveauRestaurantNom} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
-                <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
-                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                <br /><br />
-              </div>         
+        <div>
+          <p><b>Ajouter un restaurant :</b></p>
+          <form onSubmit={handleSubmit}>
+            <div className="w-full flex flex-col items-center">
+              <p className="m-4">Entrez le nom du restaurant</p>
+              <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={handleNouveauRestaurantNom} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
+              <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <br /><br />
-            </form>
-          </div>
-        )}
-
+            </div>         
+            <br /><br />
+          </form>
+        </div>
+      
         <Footer />
       </div>
     )
