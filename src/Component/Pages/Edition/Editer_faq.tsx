@@ -15,6 +15,10 @@ function Editer_faq() {
   const [nouvelleQuestion, setNouvelleQuestion] = useState("")
   const [nouvelleReponse, setNouvelleReponse] = useState("")
   const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
+  const [faqSelectionne, setFaqSelectionne] = useState<Faq | null>(null)
+  const [faqModifiee, setFaqModifiee] = useState<number | null>(null)
+  const [questionModif, setQuestionModif] = useState("")
+  const [reponseModif, setReponseModif] = useState("")
 
 
   useEffect(() => {
@@ -22,6 +26,31 @@ function Editer_faq() {
       setFaqList(response.data)
     })
   }, [])
+
+  const handleModifier = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!faqSelectionne) {
+      return
+    }
+    Axios.put(`/faq/${faqSelectionne.id}`, {
+      question: questionModif,
+      answer: reponseModif,
+    }).then(() => {
+      setFaqList(prevFaqList =>
+        prevFaqList.map(faq =>
+          faq.id === faqSelectionne.id ? { ...faq, question: questionModif, answer: reponseModif } : faq
+        )
+      )
+      setFaqSelectionne(null)
+      setFaqSelectionne(null)
+      setFaqModifiee(null) // reset the modification state
+      setQuestionModif("")
+      setReponseModif("")
+    }).catch(error => {
+      setErrorMessage("Erreur lors de la modification de la FAQ")
+      console.error(error)
+    })
+  }
 
   const handleDeleteQuestion = async (id: number): Promise<void> => {
     try {
@@ -92,7 +121,10 @@ function Editer_faq() {
                   </button>
                 </td>
                 <td className="border b border-black order-3 px-4 py-2">
-                  <button className="btn btn-ghost btn-circle">
+                  <button onClick={() => {
+                    setFaqSelectionne(faq)
+                    setFaqModifiee(faq.id)
+                  }} className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                       <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
@@ -126,3 +158,18 @@ function Editer_faq() {
 }
 
 export default Editer_faq
+/*        
+      {faqModifiee === faq.id ? (
+        <form onSubmit={handleModifier}>
+          <input type="text" placeholder="modification de la question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={questionModif} onChange={(e) => setQuestionModif(e.target.value)} />
+          <input type="text" placeholder="modification de la question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={reponseModif} onChange={(e) => setReponseModif(e.target.value)} />
+          <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+        </form>
+      ) : (
+        <button onClick={() => {
+          setFaqModifiee(faq.id)
+          setQuestionModif(faq.question)
+          setReponseModif(faq.answer)
+        }} className="btn btn-ghost btn-circle">Modifier</button>
+      )}
+      */
