@@ -1,24 +1,42 @@
 import Navigation from "../../Navigation/Navigation"
 import Footer from "../../Footer/Footer"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Axios from "../../../Axios"
 
 function Menu1() {
 
-  const menus = [
-    { name: "Menu 1", image: "https://via.placeholder.com/100",  description: "description du menu 1", entree: "Entree 1", dessert:"Dessert 1", plat: "plat 1"},
-    { name: "Menu 2", image: "https://via.placeholder.com/100",  description: "description du menu 2", entree: "Entree 2", dessert:"Dessert 2", plat: "plat 2"  },
-    { name: "Menu 3", image: "https://via.placeholder.com/100",  description: "description du menu 3", entree: "Entree 3", dessert:"Dessert 3", plat: "plat 3"  },
-    { name: "Menu 4", image: "https://via.placeholder.com/100",  description: "description du menu 4", entree: "Entree 4", dessert:"Dessert 4", plat: "plat 4" },
-    { name: "Menu 5", image: "https://via.placeholder.com/100",  description: "description du menu 5", entree: "Entree 5", dessert:"Dessert 5", plat: "plat 5"  },
-  ]
-  
-  const [quantities, setQuantities] = useState(new Array(menus.length).fill(0))
+  interface Repas {
+    id : string,
+    date: Date;
+    entree: string;
+    mainDish: string;
+    mainDishDescription: string;
+    dessert: string;
+    restaurantId: number;
+  }
+
+  const [repas, setRepas] = useState<Repas[]>([])
+  const [quantities, setQuantities] = useState(new Array(repas.length).fill(0))
+  const [compteur, setCompteur] = useState(1)
 
   const handleQuantityChange = (index: number, value: number) => {
     const newQuantities = [...quantities]
     newQuantities[index] = value
     setQuantities(newQuantities)
   }
+
+  useEffect(() => {
+    // Charger les restaurants depuis l'API
+    Axios
+      .get("http://localhost:8000/menus")
+      .then((response) => {
+        setRepas(response.data)
+        setQuantities(new Array(response.data.length).fill(0))
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   return (
     <div>
@@ -27,16 +45,16 @@ function Menu1() {
       <p className="text-4xl md:text-lg py-4">Réserver un menu</p>
       <div className="p-6">
         <div className="grid grid-cols-3 gap-4">
-          {menus.map((menu, index: number) => (
+          {repas.map((repas, index) => (
             <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex">
-              <img src={menu.image} alt={menu.name} className="w-1/2 p-4" />
+              <img src={"https://via.placeholder.com/100"} alt={repas.mainDishDescription} className="w-1/2 p-4" />
               <div className="p-4 w-1/2 flex flex-col justify-between">
                 <div className="flex flex-col justify-between">
-                  <h2 className="text-xl font-bold mb-2">{menu.name}</h2>
-                  <p className="text-gray-700 text-base">{menu.entree}</p>
-                  <p className="text-gray-700 text-base">{menu.plat}</p>
-                  <p className="text-gray-700 text-base">{menu.description}</p>
-                  <p className="text-gray-700 text-base">{menu.dessert}</p>
+                  <h2 className="text-xl font-bold mb-2">{"Menu numéro " + (compteur + index)}</h2>
+                  <p className="text-gray-700 text-base">{repas.entree}</p>
+                  <p className="text-gray-700 text-base">{repas.mainDish}</p>
+                  <p className="text-gray-700 text-base">{repas.mainDishDescription}</p>
+                  <p className="text-gray-700 text-base">{repas.dessert}</p>
                 </div>
                 <div className="mt-4 flex justify-center items-center mb-10">
                   <div className="flex justify-center items-center">
@@ -49,7 +67,6 @@ function Menu1() {
             </div>
           ))}
         </div>
-
 
         <label htmlFor="commentaire" className=" py-6 block mb-2 text-sm font-medium text-black">Vos commentaires par rapport aux menus</label> 
         <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires"></textarea>

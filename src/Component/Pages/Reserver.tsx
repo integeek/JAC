@@ -2,8 +2,8 @@ import Navigation from "../Navigation/Navigation"
 import { HiLocationMarker } from "react-icons/hi"
 import Footer from "../Footer/Footer"
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { Link } from "react-router-dom"
+import Axios from "../../Axios"
 
 interface Restaurant {
   id: string;
@@ -18,7 +18,7 @@ function Reserver() {
 
   useEffect(() => {
     // Charger les restaurants depuis l'API
-    axios
+    Axios
       .get("http://localhost:8000/restaurant")
       .then((response) => {
         setRestaurants(response.data)
@@ -54,9 +54,10 @@ function Reserver() {
                 <p>{restaurant.address}</p>
               </div>
               <div className="card-actions justify-end">
-                <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">
+                <Link to="/menu1" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">
                   Voir plus
-                </button>
+                </Link>
+
               </div>
             </div>
           </div>
