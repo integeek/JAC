@@ -144,7 +144,7 @@ function Editer_faq() {
           <p className="m-4">Entrez votre question</p>
           <input type="text" placeholder="Votre question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleQuestion} onChange={(e) => setNouvelleQuestion(e.target.value)} />
           <p className="m-4">Entrez la réponse</p>
-          <textarea id="message" rows={4} className="block p-2.5 w-full max-w-xs text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" value={nouvelleReponse}  onChange={(e) => setNouvelleReponse(e.target.value)} placeholder="La réponse" ></textarea>
+          <textarea id="message" className=" textarea textarea-bordered block p-2.5 w-full max-w-xs text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="La réponse" value={nouvelleReponse}  onChange={(e) => setNouvelleReponse(e.target.value)}></textarea>
           {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <button onClick={handleAjouterQuestion} className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
         </div>

@@ -13,7 +13,6 @@ import Inscription from "./Component/Pages/Inscription"
 import Menu1 from "./Component/Pages/Menus/Menu1"
 import Accueil from "./Component/Pages/Accueil"
 import Nouveau_mdp from "./Component/Pages/Nouveau_mdp"
-import Editer from "./Component/Pages/Editer"
 import Erreur404 from "./Component/Pages/Erreur404" 
 import Mdp_oublie from "./Component/Pages/mdp_oublie"
 import Editer_faq from "./Component/Pages/Edition/Editer_faq"
@@ -40,7 +39,6 @@ function App() {
           <Route path="/mdpoublie" element={<Mdp_oublie />} />  
           <Route path="/nouveaumdp" element={<Nouveau_mdp />} />  
           <Route path="/menu1" element={<Menu1 />} />  
-          <Route path="/editer" element={<Editer />} />  
           <Route path="*" element={<Erreur404 />} />  
           <Route path="/editfaq" element={<Editer_faq />} />  
           <Route path="/editmenus" element={<Editer_menus />} />  

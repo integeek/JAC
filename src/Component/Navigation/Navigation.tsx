@@ -21,8 +21,6 @@ function Navigation() {
             <ul className="p-2 bg-base-100 rounded shadow-xl z-50">
               <li><Link to="/compte" className="active:bg-gray-200">Mon compte</Link></li>
               <li><a className="active:bg-gray-200">Se déconnecter</a></li>
-              <li><Link to="/editer" className="active:bg-gray-200">Editer</Link></li>
-
             </ul>
           </li>
           
