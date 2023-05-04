@@ -19,6 +19,7 @@ import Editer_faq from "./Component/Pages/Edition/Editer_faq"
 import Editer_menus from "./Component/Pages/Edition/Editer_menus"
 import Editer_user from "./Component/Pages/Edition/Editer_user"
 import Editer_restaurant from "./Component/Pages/Edition/Editer_restaurant"
+import ReservationRestaurateur from "./Component/Pages/ReservationRestaurateur"
 // relier les différentes pages avec l'url
 function App() {
   return (
@@ -44,12 +45,7 @@ function App() {
           <Route path="/editmenus" element={<Editer_menus />} />  
           <Route path="/edituser" element={<Editer_user />} />  
           <Route path="/editrestaurant" element={<Editer_restaurant />} />  
-
-
-
-
-
-
+          <Route path="/reservationrestaurateur" element={<ReservationRestaurateur />} />
         </Routes>
       </BrowserRouter>
     </div>
