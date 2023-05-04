@@ -1,7 +1,7 @@
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 
-function Mes_reservations() {
+function MesReservations() {
 
   
   return (
@@ -69,7 +69,7 @@ function Mes_reservations() {
 }
 
 
-export default Mes_reservations
+export default MesReservations
 
 
        

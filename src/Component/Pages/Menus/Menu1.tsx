@@ -18,6 +18,9 @@ function Menu1() {
   const [repas, setRepas] = useState<Repas[]>([])
   const [quantities, setQuantities] = useState(new Array(repas.length).fill(0))
   const [compteur, setCompteur] = useState(1)
+  const [commentaire, setCommentaire] = useState("")
+  const [menusID, setMenusID] = useState("")
+  const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
 
   const handleQuantityChange = (index: number, value: number) => {
     const newQuantities = [...quantities]
@@ -37,6 +40,33 @@ function Menu1() {
         console.log(error)
       })
   }, [])
+
+  const handleAjouterReservation = () => {
+    const totalQuantity = quantities.reduce((acc, cur) => acc + cur, 0)
+    const menuIds = repas.filter((repas, index) => quantities[index] > 0).map((repas) => repas.id)
+    if (menuIds.length === 0) {
+      setErrorMessage("Vous devez sélectionner au moins un menu.")
+      return
+    }
+    if (totalQuantity === 0) {
+      setErrorMessage("Vous devez sélectionner au moins un menu.")
+      return
+    }
+
+    Axios.post("/reservation", {
+      commentaire: commentaire,
+      menusId: menuIds.join(","),
+      nbPersonne: totalQuantity,
+    })
+      .then((response) => {
+        setCommentaire("")
+        setMenusID(menuIds.join(","))
+      })
+      .catch(() => {
+        setErrorMessage("Une erreur s'est produite.")
+      })
+  }
+
 
   return (
     <div>
@@ -68,9 +98,9 @@ function Menu1() {
           ))}
         </div>
 
-        <label htmlFor="commentaire" className=" py-6 block mb-2 text-sm font-medium text-black">Vos commentaires par rapport aux menus</label> 
-        <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires"></textarea>
-        <button className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Réserver</button>
+        <label htmlFor="commentaire" className=" py-6 block mb-2 text-sm font-medium text-black" >Vos commentaires par rapport aux menus</label> 
+        <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires" value={commentaire} onChange={(e) => setCommentaire(e.target.value)}></textarea>
+        <button onClick={handleAjouterReservation} className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Réserver</button>
         <Footer />
       </div>
     </div>

@@ -89,8 +89,8 @@ function Editer_faq() {
       .catch(() => {
         setErrorMessage("Une erreur s'est produite.")
       })
-
   }
+  
   return (
     <div>
       <title>Editer la Faq</title>

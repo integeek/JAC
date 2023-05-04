@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
-import Mes_reservations from "./Component/Pages/Mes_reservations"
+import MesReservations from "./Component/Pages/MesReservations"
 import Mentions from "./Component/Pages/mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Connexion"
@@ -31,7 +31,7 @@ function App() {
           <Route path="/faq" element={<Faq />} />  
           <Route path="/contact" element={<Contact />} />  
           <Route path="/reserver" element={<Reserver />} />     
-          <Route path="/reservation" element={<Mes_reservations />} />  
+          <Route path="/reservation" element={<MesReservations />} />  
           <Route path="/mentions" element={<Mentions />} />  
           <Route path="/compte" element={<Compte />} />  
           <Route path="/connexion" element={<Connexion />} />  
