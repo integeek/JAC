@@ -140,6 +140,7 @@ function Editer_menus() {
             <input type="text" placeholder="Nom du dessert" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauDessert} onChange={(e) => setNouveauDessert(e.target.value)} required/>
             <p className="m-4">Entrez le numéro du restaurant</p>
             <input type="text" placeholder="Numéro du restaurant" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauRestaurantId} onChange={(e) => setNouveaurestaurantId(e.target.value)} required/>
+            <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs mt-6" />
             <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             <br /><br />

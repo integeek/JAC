@@ -2,6 +2,7 @@ import Navigation from "../../Navigation/Navigation"
 import Footer from "../../Footer/Footer"
 import { useState, useEffect } from "react"
 import Axios from "../../../Axios"
+import { Link } from "react-router-dom"
 
 function Menu1() {
 
@@ -72,6 +73,9 @@ function Menu1() {
     <div>
       <Navigation />
       <title>Réserver un menu</title>
+      <Link to="/editmenus" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Éditer
+      </Link>
       <p className="text-4xl md:text-lg py-4">Réserver un menu</p>
       <div className="p-6">
         <div className="grid grid-cols-3 gap-4">
