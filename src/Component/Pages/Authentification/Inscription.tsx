@@ -3,6 +3,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 import React, { useRef } from "react"
 import Axios from "../../../Axios"
 import { useState } from "react"
+
 /*
 interface CaptchaRefObject {
   getValue: () => string;
@@ -10,9 +11,9 @@ interface CaptchaRefObject {
 }
 */
 function Inscription() {
-  
-  const captchaRef = useRef<ReCAPTCHA>(null)
   /*
+
+  const captchaRef = useRef<ReCAPTCHA>(null)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const inputVal = (e.currentTarget.querySelector("input[name=\"inputVal\"]") as HTMLInputElement).value
@@ -30,9 +31,38 @@ function Inscription() {
   const [nom, setNom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    //Toutes les recommandations de la CNIL
+    if (password.length < 12) {
+      alert("Le mot de passe doit contenir au moins 8 caractères")
+      return 
+    }
+    if (password !== confirmPassword) {
+      alert("Les mots de passe ne correspondent pas")
+      return 
+    }
+    if (!/\d/.test(password)) {
+      alert("Le mot de passe doit contenir au moins un chiffre")
+      return 
+    }
+    if (!/[A-Z]/.test(password)) {
+      alert("Le mot de passe doit contenir au moins une majuscule")
+      return 
+    }
+    if (!/[a-z]/.test(password)) {
+      alert("Le mot de passe doit contenir au moins une minuscule")
+      return 
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      alert("Le mot de passe doit contenir au moins un caractère spécial")
+      return 
+    }
+    
     Axios.post("/authentication/register", {
       name: prenom,
       firstname: nom,
@@ -41,11 +71,21 @@ function Inscription() {
     })
       .then((response) => {
         console.log(response.data)
-      // Mettre à jour le state de votre composant avec les données de réponse si nécessaire
+        setNom("")
+        setPrenom("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+        setErrorMessage("")
+        Axios.post("/email/send-email", {
+          email: email,
+        })
       })
       .catch((error) => {
-        console.log(error)
-      // Gérer les erreurs de requête si nécessaire
+        console.error(error)
+        setErrorMessage(
+          "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."
+        )
       })
   }
 
@@ -83,7 +123,13 @@ function Inscription() {
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Mot de passe</label>
                   <input type="password" name="password" id="password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
+                <label htmlFor="info" className="block mb-2 text-xs font-medium text-gray-600 text-left"> Il doit contenir au moins 12 caractères,1 chiffre, 1 majuscule, 1 minuscule et 1 caractère spécial</label>
+                <div>
+                  <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-black">Confirmer votre mot de passe</label>
+                  <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                </div>
                 <button type="submit" className="w-full text-black bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">S'inscrire</button>
+                {errorMessage && <p>{errorMessage}</p>}
                 <p className="text-sm font-light text-black">
                       Déja un compte ? <Link to="/connexion" className="font-medium text-primary-600 hover:underline">Se connecter</Link>
                       
