@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import ReCAPTCHA from "react-google-recaptcha"
-import React, { useRef } from "react"
+//import ReCAPTCHA from "react-google-recaptcha"
+import React from "react"
 import Axios from "../../../Axios"
 import { useState } from "react"
 
@@ -77,9 +77,9 @@ function Inscription() {
         setPassword("")
         setConfirmPassword("")
         setErrorMessage("")
-        Axios.post("/email/send-email", {
-          email: email,
-        })
+        //Axios.post("/email/send-email", {
+        //   email: email,
+      //  })
       })
       .catch((error) => {
         console.error(error)

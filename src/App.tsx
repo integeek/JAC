@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
-import MesReservations from "./Component/Pages/MesReservations"
+import MesReservations from "./Component/Pages/Mes_reservations"
 import Mentions from "./Component/Pages/mentions"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Authentification/Connexion"
@@ -19,8 +19,9 @@ import Editer_faq from "./Component/Pages/Edition/Editer_faq"
 import Editer_menus from "./Component/Pages/Edition/Editer_menus"
 import Editer_user from "./Component/Pages/Edition/Editer_user"
 import Editer_restaurant from "./Component/Pages/Edition/Editer_restaurant"
-import ReservationRestaurateur from "./Component/Pages/ReservationRestaurateur"
-import ConfirmationEmail from "./Component/Pages/Authentification/ConfirmationEmail"
+import ReservationRestaurateur from "./Component/Pages/Reservation_restaurateur"
+import ConfirmationEmail from "./Component/Pages/Authentification/Confirmation_email"
+import Editer_contact from "./Component/Pages/Edition/Editer_contact"
 // relier les différentes pages avec l'url
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/editrestaurant" element={<Editer_restaurant />} />  
           <Route path="/reservationrestaurateur" element={<ReservationRestaurateur />} />
           <Route path="/confirmation" element={<ConfirmationEmail />} />
+          <Route path="/editcontact" element={<Editer_contact />} />
 
         </Routes>
       </BrowserRouter>

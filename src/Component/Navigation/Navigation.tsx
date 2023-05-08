@@ -23,6 +23,21 @@ function Navigation() {
               <li><a className="active:bg-gray-200">Se déconnecter</a></li>
             </ul>
           </li>
+
+          <li tabIndex={0}>
+            <a className="text-white hover:bg-blue-300 active:bg-blue-400">
+              Edition
+              <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+            </a>
+            <ul className="p-2 bg-base-100 rounded shadow-xl z-50">
+              <li><Link to="/editmenus" className="active:bg-gray-200">Menus</Link></li>
+              <li><Link to="/editfaq" className="active:bg-gray-200">Faq</Link></li>
+              <li><Link to="/editrestaurant" className="active:bg-gray-200">Restaurant</Link></li>
+              <li><Link to="/edituser" className="active:bg-gray-200">Utilisateur</Link></li>
+              <li><Link to="/reservationrestaurateur" className="active:bg-gray-200">Réservation</Link></li>
+              <li><Link to="/editcontact" className="active:bg-gray-200">Contact</Link></li>
+            </ul>
+          </li>
           
         </ul>
       </div>
