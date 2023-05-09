@@ -15,30 +15,35 @@ function Contact() {
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
 
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (nom === "" || email === "" || message === "") {
       setError("Veuillez remplir tous les champs")
+    } else {
+      const date = new Date().toLocaleDateString()
+      Axios.post("/contact", {
+        name: nom,
+        email: email,
+        message: message,
+        date: date,
+      })
+        .then((response) => {
+          console.log(response.data)
+          setNom("")
+          setEmail("")
+          setMessage("")
+          setError("")
+        })
+        .catch((error) => {
+          console.log(error)
+          setError(
+            "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+          )
+        })
     }
-    Axios.post("/contact", {
-      name: nom,
-      email: email,
-      message: message,
-    })
-      .then((response) => {
-        console.log(response.data)
-        setNom("")
-        setEmail("")
-        setMessage("")
-        setError("")
-      })
-      .catch((error) => {
-        console.log(error)
-        setError(
-          "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
-        )
-      })
   }
+
 
   return (
     <div>

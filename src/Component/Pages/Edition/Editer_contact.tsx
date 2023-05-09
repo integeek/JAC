@@ -8,6 +8,7 @@ interface Contact {
     name: string;
     email: string;
     message: string;
+    date: Date;
 }
 
 function Editer_contact() {
@@ -38,11 +39,12 @@ function Editer_contact() {
       <Navigation />
       <title>Voir formulaire contact</title>
       <p className="text-4xl md:text-lg py-8">Voir les formulaires de contact</p>
-      <div className="center">
-        <table className="mx-auto my-8">
+      <div className="center" >
+        <table className="mx-auto my-8 shadow-md">
           <thead>
             <tr>
               <th className="px-4 py-2">Le nom</th>
+              <th className="px-4 py-2">La date</th>
               <th className="px-4 py-2">L'email</th>
               <th className="px-4 py-2">Le message</th>
               <th className="px-4 py-2">Actions</th>
@@ -52,6 +54,7 @@ function Editer_contact() {
             {contactList.map((contact) => (
               <tr key={contact.id}>
                 <td className="border border-black px-4 py-2">{contact.name}</td>
+                <td className="border border-black px-4 py-2">{new Date(contact.date).toLocaleString("fr-FR")}</td>
                 <td className="border border-black px-4 py-2">{contact.email}</td>
                 <td className="border border-black px-4 py-2">{contact.message}</td>
                 <td className="border border-black order-4 px-4 py-2">

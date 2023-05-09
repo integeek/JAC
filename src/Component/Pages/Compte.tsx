@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
+import { Link } from "react-router-dom"
+
 function Compte() {
   const [firstName, setFirstName] = useState("John")
   const [lastName, setLastName] = useState("Doe")
@@ -19,6 +21,9 @@ function Compte() {
   return (
     <div>
       <Navigation />
+      <Link to="/edituser" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Éditer
+      </Link>
 
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 
