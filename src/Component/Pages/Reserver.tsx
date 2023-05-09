@@ -19,7 +19,7 @@ function Reserver() {
   useEffect(() => {
     // Charger les restaurants depuis l'API
     Axios
-      .get("http://localhost:8000/restaurant")
+      .get("restaurant")
       .then((response) => {
         setRestaurants(response.data)
       })

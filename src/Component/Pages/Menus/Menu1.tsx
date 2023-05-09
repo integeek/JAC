@@ -32,7 +32,7 @@ function Menu1() {
   useEffect(() => {
     // Charger les restaurants depuis l'API
     Axios
-      .get("http://localhost:8000/menus")
+      .get("menus")
       .then((response) => {
         setRepas(response.data)
         setQuantities(new Array(response.data.length).fill(0))
