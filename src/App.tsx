@@ -5,23 +5,23 @@ import { BrowserRouter, Route, Routes} from "react-router-dom"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
-import MesReservations from "./Component/Pages/Mes_reservations"
-import Mentions from "./Component/Pages/mentions"
+import MesReservations from "./Component/Pages/MesReservations"
+import Mentions from "./Component/Pages/MentionLegale"
 import Compte from "./Component/Pages/Compte"
 import Connexion from "./Component/Pages/Authentification/Connexion"
 import Inscription from "./Component/Pages/Authentification/Inscription"
 import Menu1 from "./Component/Pages/Menus/Menu1"
 import Accueil from "./Component/Pages/Accueil"
-import Nouveau_mdp from "./Component/Pages/Authentification/Nouveau_mdp"
+import NouveauMdp from "./Component/Pages/Authentification/NouveauMdp"
 import Erreur404 from "./Component/Pages/Erreur404" 
-import Mdp_oublie from "./Component/Pages/Authentification/mdp_oublie"
-import Editer_faq from "./Component/Pages/Edition/Editer_faq"
-import Editer_menus from "./Component/Pages/Edition/Editer_menus"
-import Editer_user from "./Component/Pages/Edition/Editer_user"
-import Editer_restaurant from "./Component/Pages/Edition/Editer_restaurant"
-import ReservationRestaurateur from "./Component/Pages/Reservation_restaurateur"
-import ConfirmationEmail from "./Component/Pages/Authentification/Confirmation_email"
-import Editer_contact from "./Component/Pages/Edition/Editer_contact"
+import MdpOublie from "./Component/Pages/Authentification/MdpOublie"
+import EditerFaq from "./Component/Pages/Edition/EditerFaq"
+import EditerMenus from "./Component/Pages/Edition/EditerMenus"
+import EditerUser from "./Component/Pages/Edition/EditerUser"
+import EditerRestaurant from "./Component/Pages/Edition/EditerRestaurant"
+import ReservationRestaurateur from "./Component/Pages/ReservationRestaurateur"
+import ConfirmationEmail from "./Component/Pages/Authentification/ConfirmationEmail"
+import EditerContact from "./Component/Pages/Edition/EditerContact"
 // relier les différentes pages avec l'url
 function App() {
   return (
@@ -39,17 +39,17 @@ function App() {
           <Route path="/compte" element={<Compte />} />  
           <Route path="/connexion" element={<Connexion />} />  
           <Route path="/inscription" element={<Inscription />} />  
-          <Route path="/mdpoublie" element={<Mdp_oublie />} />  
-          <Route path="/nouveaumdp" element={<Nouveau_mdp />} />  
+          <Route path="/mdpoublie" element={<MdpOublie />} />  
+          <Route path="/nouveaumdp" element={<NouveauMdp />} />  
           <Route path="/menu1" element={<Menu1 />} />  
           <Route path="*" element={<Erreur404 />} />  
-          <Route path="/editfaq" element={<Editer_faq />} />  
-          <Route path="/editmenus" element={<Editer_menus />} />  
-          <Route path="/edituser" element={<Editer_user />} />  
-          <Route path="/editrestaurant" element={<Editer_restaurant />} />  
+          <Route path="/editfaq" element={<EditerFaq />} />  
+          <Route path="/editmenus" element={<EditerMenus />} />  
+          <Route path="/edituser" element={<EditerUser />} />  
+          <Route path="/editrestaurant" element={<EditerRestaurant />} />  
           <Route path="/reservationrestaurateur" element={<ReservationRestaurateur />} />
           <Route path="/confirmation" element={<ConfirmationEmail />} />
-          <Route path="/editcontact" element={<Editer_contact />} />
+          <Route path="/editcontact" element={<EditerContact />} />
 
         </Routes>
       </BrowserRouter>

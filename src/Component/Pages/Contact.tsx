@@ -50,23 +50,23 @@ function Contact() {
       <Navigation />
       <title>Contact</title>
 
-      <div className="container my-8 px-6 mx-auto">
+      <div className="container px-6 mx-auto my-8">
 
         <section className="mb-8 text-gray-800">
 
-          <p className="text-4xl mb-8 md:text-lg">Nous contacter</p>     
+          <p className="mb-8 text-4xl md:text-lg">Nous contacter</p>     
 
           <div className="flex flex-wrap" id="formulaire">
-            <div className="grow-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
+            <div className="w-full px-3 mb-12 grow-0 basis-auto lg:mb-0 lg:w-5/12 lg:px-6">
               <form onSubmit={handleSubmit}>
-                <div className="form-group mb-6">
+                <div className="mb-6 form-group">
                   <input type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required/>
                 </div>
-                <div className="form-group mb-6">
+                <div className="mb-6 form-group">
                   <input type="email" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8" placeholder="Adresse email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                 
                 </div>
-                <div className="form-group mb-6">
+                <div className="mb-6 form-group">
                   <textarea className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlTextarea13" rows={3} placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                 </div>
  
@@ -74,49 +74,49 @@ function Contact() {
               </form>
             </div>
           </div>
-          <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12" id='contact'>
+          <div className="w-full grow-0 shrink-0 basis-auto lg:w-7/12" id='contact'>
             <div className="flex flex-wrap">
-              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
                 <div className="flex items-start">
                   <div className="shrink-0">
                     <LocationOn sx={{ fontSize: 60 }} style={{ color: "black" }}/>
                   </div>
-                  <div className="grow ml-6">
-                    <p className="font-bold mb-1">Adresse</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-1 font-bold">Adresse</p>
                     <p className="text-gray-500"> 31 rue de Liège</p>
                     <p className="text-gray-500">75008 Paris</p>
                   </div>
                 </div>
               </div>
-              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
                 <div className="flex items-start">
                   <div className="shrink-0">
                     <Email sx={{ fontSize: 60 }} style={{ color: "black" }}/>
                   </div>
-                  <div className="grow ml-6">
-                    <p className="font-bold mb-1">Adresse mail</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-1 font-bold">Adresse mail</p>
                     <p className="text-gray-500">contact@lad.fr</p>
                   </div>
                 </div>
               </div>
-              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
                 <div className="flex align-start">
                   <div className="shrink-0">
                     <LocalPhone sx={{ fontSize: 60 }} style={{ color: "black" }}/>
                   </div>
-                  <div className="grow ml-6">
-                    <p className="font-bold mb-1">Téléphone</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-1 font-bold">Téléphone</p>
                     <p className="text-gray-500">+33 01 43 87 24 63</p>
                   </div>
                 </div>
               </div>
-              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
                 <div className="flex align-start">
                   <div className="shrink-0">
                     <Facebook sx={{ fontSize: 60 }} style={{ color: "black" }}/>
                   </div>
-                  <div className="grow ml-6">
-                    <p className="font-bold mb-1">Facebook</p>
+                  <div className="ml-6 grow">
+                    <p className="mb-1 font-bold">Facebook</p>
                     <p className="text-gray-500">Les ailes déployées</p>
                   </div>
                 </div>

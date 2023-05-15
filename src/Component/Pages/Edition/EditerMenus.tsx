@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Axios from "../../../Axios"
 
-function Editer_menus() {
+function EditerMenus() {
 
   interface Menus {
     id : string,
@@ -92,8 +92,8 @@ function Editer_menus() {
           <tbody>
             {menusList.map(menu => (
               <tr key={menu.id}>
-                <td className="border b border-black order-4 px-4 py-2">{menu.mainDish}</td>
-                <td className="border b border-black order-4 px-4 py-2">
+                <td className="order-4 px-4 py-2 border border-black b">{menu.mainDish}</td>
+                <td className="order-4 px-4 py-2 border border-black b">
                   <button onClick={() => handleDeleteMenus(menu.id)} className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -105,7 +105,7 @@ function Editer_menus() {
                     </svg>
                   </button>
                 </td>
-                <td className="border b border-black order-3 px-4 py-2">
+                <td className="order-3 px-4 py-2 border border-black b">
                   <button className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -127,21 +127,21 @@ function Editer_menus() {
           e.preventDefault()
           handleAjouterMenus()
         }}>
-          <div className="w-full flex flex-col items-center">
+          <div className="flex flex-col items-center w-full">
             <p className="m-4">Entrez la date</p>
-            <input type="text" placeholder="Date du jour" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleDate} onChange={(e) => setNouvelleDate(e.target.value)}required/>
+            <input type="text" placeholder="Date du jour" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouvelleDate} onChange={(e) => setNouvelleDate(e.target.value)}required/>
             <p className="m-4">Entrez le nom de l'entrée</p>
-            <input type="text" placeholder="Nom de l'entrée" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleEntree} onChange={(e) => setNouvelleEntree(e.target.value)} required/>
+            <input type="text" placeholder="Nom de l'entrée" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouvelleEntree} onChange={(e) => setNouvelleEntree(e.target.value)} required/>
             <p className="m-4">Entrez le nom du plat </p>
-            <input type="text" placeholder="Nom du plat" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauPlat} onChange={(e) => setNouveauPlat(e.target.value)} required/>
+            <input type="text" placeholder="Nom du plat" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouveauPlat} onChange={(e) => setNouveauPlat(e.target.value)} required/>
             <p className="m-4">Entrez la description du plat</p>
-            <input type="text" placeholder="Description du plat" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} required/>
+            <input type="text" placeholder="Description du plat" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} required/>
             <p className="m-4">Entrez le nom du dessert</p>
-            <input type="text" placeholder="Nom du dessert" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauDessert} onChange={(e) => setNouveauDessert(e.target.value)} required/>
+            <input type="text" placeholder="Nom du dessert" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouveauDessert} onChange={(e) => setNouveauDessert(e.target.value)} required/>
             <p className="m-4">Entrez le numéro du restaurant</p>
-            <input type="text" placeholder="Numéro du restaurant" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouveauRestaurantId} onChange={(e) => setNouveaurestaurantId(e.target.value)} required/>
-            <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs mt-6" />
-            <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+            <input type="text" placeholder="Numéro du restaurant" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouveauRestaurantId} onChange={(e) => setNouveaurestaurantId(e.target.value)} required/>
+            <input type="file" className="w-full max-w-xs mt-6 file-input file-input-bordered file-input-info" />
+            <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             <br /><br />
           </div>         
@@ -154,4 +154,4 @@ function Editer_menus() {
   )
 }
 
-export default Editer_menus
+export default EditerMenus

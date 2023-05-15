@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Axios from "../../../Axios"
 
-function Editer_restaurant() {
+function EditerRestaurant() {
  
   //permet d'afficher liste des restaurants sous forme de tableau
     interface Restaurant {
@@ -79,8 +79,8 @@ function Editer_restaurant() {
             <tbody>
               {restaurantList.map((restaurant) => (
                 <tr key={restaurant.id}>
-                  <td className="border b border-black order-4 px-4 py-2">{restaurant.name}</td>
-                  <td className="border b border-black order-4 px-4 py-2">
+                  <td className="order-4 px-4 py-2 border border-black b">{restaurant.name}</td>
+                  <td className="order-4 px-4 py-2 border border-black b">
                     <button onClick={() => handleDeleteRestaurant(restaurant.id)} className="btn btn-ghost btn-circle">
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -92,7 +92,7 @@ function Editer_restaurant() {
                       </svg>
                     </button>
                   </td>
-                  <td className="border b border-black order-3 px-4 py-2">
+                  <td className="order-3 px-4 py-2 border border-black b">
                     <button className="btn btn-ghost btn-circle">
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -114,12 +114,12 @@ function Editer_restaurant() {
             e.preventDefault()
             handleAjouterRestaurant()
           }}>
-            <div className="w-full flex flex-col items-center">
+            <div className="flex flex-col items-center w-full">
               <p className="m-4">Entrez le nom du restaurant</p>
-              <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
+              <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
               <p className="m-4">Entrez l'adresse du restaurant</p>
-              <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="input bg-gray-50 input-bordered w-full max-w-xs" required/>
-              <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+              <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
               {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <br /><br />
             </div>         
@@ -132,4 +132,4 @@ function Editer_restaurant() {
     )
 }
 
-export default Editer_restaurant
+export default EditerRestaurant

@@ -18,7 +18,7 @@ function Faq() {
   return (
     <div>
       <Navigation />
-      <Link to="/editfaq" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <Link to="/editfaq" className="fixed top-0 right-0 px-4 py-2 m-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
   Éditer
       </Link>
       <title>Faq</title>
@@ -26,7 +26,7 @@ function Faq() {
       <p className="text-4xl md:text-lg">Foire aux questions</p>     
       <br />
       {faqs.map(faq => ( //Parcourir le tableau faqs et faire un element par réponse
-        <div tabIndex={0} key={faq.id} className="mb-4 ml-16 mr-16 border collapse collapse-plus border-base-300 bg-base-100 rounded-box z-0">
+        <div tabIndex={0} key={faq.id} className="z-0 mb-4 ml-16 mr-16 border collapse collapse-plus border-base-300 bg-base-100 rounded-box">
           <div className="text-xl font-medium bg-blue-400 collapse-title">
             {faq.question}
           </div>

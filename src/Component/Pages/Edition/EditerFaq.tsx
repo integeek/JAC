@@ -9,7 +9,7 @@ interface Faq {
   answer: string;
 }
 
-function Editer_faq() {
+function EditerFaq() {
   const [faqList, setFaqList] = useState<Faq[]>([])
   //const [question, setQuestion] = useState("")
   const [nouvelleQuestion, setNouvelleQuestion] = useState("")
@@ -107,8 +107,8 @@ function Editer_faq() {
           <tbody>
             {faqList.map((faq) => (
               <tr key={faq.id}>
-                <td className="border border-black px-4 py-2">{faq.question}</td>
-                <td className="border b border-black order-4 px-4 py-2">
+                <td className="px-4 py-2 border border-black">{faq.question}</td>
+                <td className="order-4 px-4 py-2 border border-black b">
                   <button onClick={() => handleDeleteQuestion(faq.id)} className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -120,7 +120,7 @@ function Editer_faq() {
                     </svg>
                   </button>
                 </td>
-                <td className="border b border-black order-3 px-4 py-2">
+                <td className="order-3 px-4 py-2 border border-black b">
                   <button onClick={() => {
                     setFaqSelectionne(faq)
                     setFaqModifiee(faq.id)
@@ -139,14 +139,14 @@ function Editer_faq() {
         </table>
       </div>
       <p><b>Ajouter une entrée dans la Faq :</b></p>
-      <div className="flex justify-center items-center">
-        <div className="w-full flex flex-col items-center">
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center w-full">
           <p className="m-4">Entrez votre question</p>
-          <input type="text" placeholder="Votre question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={nouvelleQuestion} onChange={(e) => setNouvelleQuestion(e.target.value)} />
+          <input type="text" placeholder="Votre question" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouvelleQuestion} onChange={(e) => setNouvelleQuestion(e.target.value)} />
           <p className="m-4">Entrez la réponse</p>
           <textarea id="message" className=" textarea textarea-bordered block p-2.5 w-full max-w-xs text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="La réponse" value={nouvelleReponse}  onChange={(e) => setNouvelleReponse(e.target.value)}></textarea>
           {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-          <button onClick={handleAjouterQuestion} className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+          <button onClick={handleAjouterQuestion} className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
         </div>
       </div>
 
@@ -157,13 +157,13 @@ function Editer_faq() {
   )
 }
 
-export default Editer_faq
+export default EditerFaq
 /*        
       {faqModifiee === faq.id ? (
         <form onSubmit={handleModifier}>
-          <input type="text" placeholder="modification de la question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={questionModif} onChange={(e) => setQuestionModif(e.target.value)} />
-          <input type="text" placeholder="modification de la question" className="input bg-gray-50 input-bordered w-full max-w-xs" value={reponseModif} onChange={(e) => setReponseModif(e.target.value)} />
-          <button type="submit" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 m-8 btn-active">Valider</button>
+          <input type="text" placeholder="modification de la question" className="w-full max-w-xs input bg-gray-50 input-bordered" value={questionModif} onChange={(e) => setQuestionModif(e.target.value)} />
+          <input type="text" placeholder="modification de la question" className="w-full max-w-xs input bg-gray-50 input-bordered" value={reponseModif} onChange={(e) => setReponseModif(e.target.value)} />
+          <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
         </form>
       ) : (
         <button onClick={() => {

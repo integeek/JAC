@@ -21,16 +21,16 @@ function Compte() {
   return (
     <div>
       <Navigation />
-      <Link to="/edituser" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <Link to="/edituser" className="fixed top-0 right-0 px-4 py-2 m-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
   Éditer
       </Link>
 
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
         <div className="px-4 py-6 sm:px-0">
-          <h1 className="text-2xl font-semibold mb-4">Mes informations personnelles</h1>
+          <h1 className="mb-4 text-2xl font-semibold">Mes informations personnelles</h1>
           <div className="mb-4">
-            <label htmlFor="firstName" className="block font-medium mb-1">
+            <label htmlFor="firstName" className="block mb-1 font-medium">
               Prénom
             </label>
             {isEditing ? (
@@ -39,14 +39,14 @@ function Compte() {
                 id="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="form-input w-full"
+                className="w-full form-input"
               />
             ) : (
-              <div className="border border-gray-300 py-2 px-4 rounded-md">{firstName}</div>
+              <div className="px-4 py-2 border border-gray-300 rounded-md">{firstName}</div>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="lastName" className="block font-medium mb-1">
+            <label htmlFor="lastName" className="block mb-1 font-medium">
               Nom
             </label>
             {isEditing ? (
@@ -55,14 +55,14 @@ function Compte() {
                 id="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="form-input w-full"
+                className="w-full form-input"
               />
             ) : (
-              <div className="border border-gray-300 py-2 px-4 rounded-md">{lastName}</div>
+              <div className="px-4 py-2 border border-gray-300 rounded-md">{lastName}</div>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block font-medium mb-1">
+            <label htmlFor="email" className="block mb-1 font-medium">
               Email
             </label>
             {isEditing ? (
@@ -71,18 +71,18 @@ function Compte() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="form-input w-full"
+                className="w-full form-input"
               />
             ) : (
-              <div className="border border-gray-300 py-2 px-4 rounded-md">{email}</div>
+              <div className="px-4 py-2 border border-gray-300 rounded-md">{email}</div>
             )}
           </div>
           {isEditing ? (
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-md" onClick={handleSaveClick}>
+            <button className="px-4 py-2 text-white bg-blue-500 rounded-md" onClick={handleSaveClick}>
               Enregistrer
             </button>
           ) : (
-            <button className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md" onClick={handleEditClick}>
+            <button className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md" onClick={handleEditClick}>
               Modifier
             </button>
           )}

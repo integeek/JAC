@@ -96,9 +96,9 @@ function Inscription() {
       <section className="bg-white">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
-            <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
+            <img className="h-20 mr-2 w-30" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           </a>
-          <div className="w-1/3 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 mx-16 bg-white">
+          <div className="w-1/3 mx-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                   Inscription
@@ -123,7 +123,7 @@ function Inscription() {
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Mot de passe</label>
                   <input type="password" name="password" id="password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
-                <label htmlFor="info" className="block mb-2 text-xs font-medium text-gray-600 text-left"> Il doit contenir au moins 12 caractères,1 chiffre, 1 majuscule, 1 minuscule et 1 caractère spécial</label>
+                <label htmlFor="info" className="block mb-2 text-xs font-medium text-left text-gray-600"> Il doit contenir au moins 12 caractères,1 chiffre, 1 majuscule, 1 minuscule et 1 caractère spécial</label>
                 <div>
                   <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-black">Confirmer votre mot de passe</label>
                   <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>

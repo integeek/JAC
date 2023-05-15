@@ -4,12 +4,12 @@ function Connexion() {
   return (
     <div>
       <br /> <br />
-      <section className="bg-white max-h-screen">
+      <section className="max-h-screen bg-white">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
-            <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
+            <img className="h-20 mr-2 w-30" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           </a>
-          <div className="w-1/3 bg-white rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 bg-white mt-4 mx-16 ">
+          <div className="w-1/3 mx-16 mt-4 bg-white rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-dark md:text-2xl">
                   Connexion
@@ -37,7 +37,7 @@ function Connexion() {
                 </div>
                 <button type="submit" className="w-full text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Se connecter</button>
                 <p className="text-sm font-light text-black">
-                      Pas encore de compte ? <Link to="/inscription" className="font-medium text-primary-600 text-black hover:underline">S'inscrire</Link>
+                      Pas encore de compte ? <Link to="/inscription" className="font-medium text-black text-primary-600 hover:underline">S'inscrire</Link>
                 </p>
                
 

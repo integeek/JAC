@@ -32,17 +32,17 @@ function Reserver() {
     <div>
       <Navigation />
       <title>Réserver</title>
-      <Link to="/editrestaurant" className="fixed top-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <Link to="/editrestaurant" className="fixed top-0 right-0 px-4 py-2 m-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
         Éditer
       </Link>
 
       <br />
       <p className="text-4xl md:text-lg">Réserver un Restaurant</p>
-      <div className="grid grid-cols-3 gap-4 my-16 sm:gird-cols-4 lg:grid-cols-8 m-8 p-8 mx-auto">
+      <div className="grid grid-cols-3 gap-4 p-8 m-8 mx-auto my-16 sm:gird-cols-4 lg:grid-cols-8">
         {restaurants.map((restaurant) => (
           <div
             key={restaurant.id}
-            className="card w-96 bg-base-100 shadow-2xl hover:scale-105 transition transform duration-700"
+            className="transition duration-700 transform shadow-2xl card w-96 bg-base-100 hover:scale-105"
           >
             <figure className="mt-4">
               <img src={"https://via.placeholder.com/150"} alt={restaurant.name} />
@@ -53,8 +53,8 @@ function Reserver() {
                 <HiLocationMarker className="mr-2" />
                 <p>{restaurant.address}</p>
               </div>
-              <div className="card-actions justify-end">
-                <Link to="/menu1" className="btn bg-blue-400 hover:bg-blue-600 border-blue-400 btn-active">
+              <div className="justify-end card-actions">
+                <Link to="/menu1" className="bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">
                   Voir plus
                 </Link>
 

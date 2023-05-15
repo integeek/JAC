@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom" 
   
-function Mdp_oublie() {
+function MdpOublie() {
   return (
     <div>
       <title>Mot de passe oublié</title>
       <div className="flex flex-col items-center justify-center h-screen">
         <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
-          <img className="w-30 h-20 mr-2" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo LAD"/>
+          <img className="h-20 mr-2 w-30" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo LAD"/>
         </a>
-        <div className="max-w-lg  items-center center mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300">
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-dark mb-2 md:text-2xl">
+        <div className="items-center max-w-lg p-8 mx-auto bg-white shadow center rounded-xl shadow-slate-300">
+          <h1 className="mb-2 text-xl font-bold leading-tight tracking-tight text-dark md:text-2xl">
               Nouveau mot de passe 
           </h1>
           <p className="text-slate-500">Remplissez le formulaire pour réinitialiser votre mot de passe</p>
@@ -22,11 +22,11 @@ function Mdp_oublie() {
                 <p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
               </div>
                
-              <button className="w-full py-3 font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">          
+              <button className="inline-flex items-center justify-center w-full py-3 space-x-2 font-medium text-white bg-blue-500 border-indigo-500 rounded-lg hover:bg-blue-600 hover:shadow">          
                 <span>Réinitialiser le mot de passe</span>
               </button>
               <p className="text-sm font-light text-black">
-                      Pas encore de compte ? <Link to="/inscription" className="font-medium text-primary-600 text-black hover:underline">S'inscrire</Link>
+                      Pas encore de compte ? <Link to="/inscription" className="font-medium text-black text-primary-600 hover:underline">S'inscrire</Link>
               </p>
             </div>
           </form>
@@ -37,4 +37,4 @@ function Mdp_oublie() {
 }
 
 
-export default Mdp_oublie
+export default MdpOublie

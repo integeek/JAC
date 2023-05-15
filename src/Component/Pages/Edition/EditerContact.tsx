@@ -11,7 +11,7 @@ interface Contact {
     date: Date;
 }
 
-function Editer_contact() {
+function EditerContact() {
   const [contactList, setContactList] = useState<Contact[]>([])
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -38,7 +38,7 @@ function Editer_contact() {
     <div>
       <Navigation />
       <title>Voir formulaire contact</title>
-      <p className="text-4xl md:text-lg py-8">Voir les formulaires de contact</p>
+      <p className="py-8 text-4xl md:text-lg">Voir les formulaires de contact</p>
       <div className="center" >
         <table className="mx-auto my-8 shadow-md">
           <thead>
@@ -53,11 +53,11 @@ function Editer_contact() {
           <tbody>
             {contactList.map((contact) => (
               <tr key={contact.id}>
-                <td className="border border-black px-4 py-2">{contact.name}</td>
-                <td className="border border-black px-4 py-2">{new Date(contact.date).toLocaleString("fr-FR")}</td>
-                <td className="border border-black px-4 py-2">{contact.email}</td>
-                <td className="border border-black px-4 py-2">{contact.message}</td>
-                <td className="border border-black order-4 px-4 py-2">
+                <td className="px-4 py-2 border border-black">{contact.name}</td>
+                <td className="px-4 py-2 border border-black">{new Date(contact.date).toLocaleString("fr-FR")}</td>
+                <td className="px-4 py-2 border border-black">{contact.email}</td>
+                <td className="px-4 py-2 border border-black">{contact.message}</td>
+                <td className="order-4 px-4 py-2 border border-black">
                   <button onClick={() => handleDeleteContact(contact.id)} className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -89,4 +89,4 @@ function Editer_contact() {
   )
 }
 
-export default Editer_contact
+export default EditerContact

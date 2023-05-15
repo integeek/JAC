@@ -10,6 +10,7 @@ function ReservationRestaurateur() {
     nbPersonne: number;
     menusId: string;
     menuName?: string;
+    date?: Date
   }
   
   
@@ -26,6 +27,8 @@ function ReservationRestaurateur() {
     const menu = menus.find(menu => menu.id === menusId)
     return menu ? menu.mainDish : "Menu introuvable"
   }
+
+  
 
   useEffect(() => {
     Axios.get("/reservation")
