@@ -15,7 +15,6 @@ function Contact() {
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
 
-  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (nom === "" || email === "" || message === "") {

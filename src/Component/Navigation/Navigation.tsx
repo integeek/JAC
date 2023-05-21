@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
 
 // créer une nav bar
 function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
   return (
     <nav className="py-4 bg-blue-400 desktop:bg-blue-400 tablet:bg-red-700 tel:bg-green-700">
       <div className="container flex items-center justify-between mx-auto tel:text-left">

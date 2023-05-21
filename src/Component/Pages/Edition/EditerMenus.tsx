@@ -81,7 +81,7 @@ function EditerMenus() {
       <title>Editer les menus</title>
       <Navigation />
       <div className="center">
-        <table className="mx-auto my-8 shadow-md"> 
+        <table className="min-h-full mx-auto my-8 shadow-md"> 
           <thead>
             <tr>
               <th className="px-4 py-2">Les menus</th>

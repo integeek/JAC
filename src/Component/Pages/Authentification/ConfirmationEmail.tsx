@@ -4,8 +4,6 @@ import { Link, useParams } from "react-router-dom"
 
 function ConfirmationEmail() {
 
-  const { token } = useParams()
-
   return (
     <div>
       <Navigation />
