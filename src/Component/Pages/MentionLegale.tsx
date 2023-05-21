@@ -8,7 +8,7 @@ function Mentions() {
       <Navigation />
       <title>Mentions légales</title>
       <br />
-      <p className="text-4xl md:text-lg">Mentions légales</p>     
+      <p className="text-4xl">Mentions légales</p>     
       <p className="m-16 text-justify ">
 Copyright : Ambre Giraud-Lanza, JAC 2023,
 

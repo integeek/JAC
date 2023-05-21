@@ -52,25 +52,25 @@ function ReservationRestaurateur() {
     <div className="flex flex-col h-screen">
       <Navigation />
       <div className="flex-grow">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-4 py-4">Les réservations</h2>
+        <div className="px-4 mx-auto max-w-7xl">
+          <h2 className="py-4 mb-4 text-3xl font-bold">Les réservations</h2>
           <div className="overflow-x-auto">
-            <table className="table-auto w-full border border-gray-300">
+            <table className="w-full border border-gray-300 table-auto">
               <thead>
                 <tr>
-                  <th className="px-4 py-2 border-b-2 border-gray-300 text-left">
+                  <th className="px-4 py-2 text-left border-b-2 border-gray-300">
                     Client
                   </th>
-                  <th className="px-4 py-2 border-b-2 border-gray-300 text-left">
+                  <th className="px-4 py-2 text-left border-b-2 border-gray-300">
                     Date
                   </th>
-                  <th className="px-4 py-2 border-b-2 border-gray-300 text-left">
+                  <th className="px-4 py-2 text-left border-b-2 border-gray-300">
                     Nombre de personnes
                   </th>
-                  <th className="px-4 py-2 border-b-2 border-gray-300 text-left">
+                  <th className="px-4 py-2 text-left border-b-2 border-gray-300">
                     Menus
                   </th>
-                  <th className="px-4 py-2 border-b-2 border-gray-300 text-left">
+                  <th className="px-4 py-2 text-left border-b-2 border-gray-300">
                     Commentaire
                   </th>
                 </tr>

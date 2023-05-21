@@ -2,7 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
-
+/*
     screens: {
       // => @media (min-width: 1280px) { ... }
       "none": "0px",
@@ -14,9 +14,9 @@ module.exports = {
       "laptop": "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      "desktop": "1280px",
+      "ordi": "1280px",
   
-    },
+    }, */
     extend: {},
   },
   plugins: [require("daisyui", "mui","flowbite/plugin, tw-elements/dist/plugin")],

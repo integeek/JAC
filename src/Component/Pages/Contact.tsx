@@ -4,8 +4,9 @@ import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import Axios from "../../Axios"
 import { useState } from "react"
-
 import { LocationOn, Email, Facebook,LocalPhone } from "@mui/icons-material"
+import New_navigation from "../Navigation/New_navigation"
+import Test1 from "../Navigation/Test1"
 //<p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
 
 function Contact() {
@@ -42,21 +43,19 @@ function Contact() {
         })
     }
   }
-
-
   return (
     <div>
-      <Navigation />
+      <New_navigation />
       <title>Contact</title>
 
       <div className="container px-6 mx-auto my-8">
 
         <section className="mb-8 text-gray-800">
 
-          <p className="mb-8 text-4xl md:text-lg">Nous contacter</p>     
+          <p className="mb-8 text-4xl">Nous contacter</p>     
 
           <div className="flex flex-wrap" id="formulaire">
-            <div className="w-full px-3 mb-12 grow-0 basis-auto lg:mb-0 lg:w-5/12 lg:px-6">
+            <div className="w-full px-3 mb-12 grow-0 basis-auto">
               <form onSubmit={handleSubmit}>
                 <div className="mb-6 form-group">
                   <input type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required/>
@@ -73,9 +72,9 @@ function Contact() {
               </form>
             </div>
           </div>
-          <div className="w-full grow-0 shrink-0 basis-auto lg:w-7/12" id='contact'>
+          <div className="w-full grow-0 shrink-0 basis-auto" id='contact'>
             <div className="flex flex-wrap">
-              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto">
                 <div className="flex items-start">
                   <div className="shrink-0">
                     <LocationOn sx={{ fontSize: 60 }} style={{ color: "black" }}/>
@@ -87,7 +86,7 @@ function Contact() {
                   </div>
                 </div>
               </div>
-              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto ">
                 <div className="flex items-start">
                   <div className="shrink-0">
                     <Email sx={{ fontSize: 60 }} style={{ color: "black" }}/>
@@ -98,7 +97,7 @@ function Contact() {
                   </div>
                 </div>
               </div>
-              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto">
                 <div className="flex align-start">
                   <div className="shrink-0">
                     <LocalPhone sx={{ fontSize: 60 }} style={{ color: "black" }}/>
@@ -109,7 +108,7 @@ function Contact() {
                   </div>
                 </div>
               </div>
-              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto lg:w-6/12 lg:px-6">
+              <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto">
                 <div className="flex align-start">
                   <div className="shrink-0">
                     <Facebook sx={{ fontSize: 60 }} style={{ color: "black" }}/>

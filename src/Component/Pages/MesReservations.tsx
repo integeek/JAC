@@ -9,7 +9,7 @@ function MesReservations() {
       <Navigation />
       <br />
       <title>Réservations</title>
-      <p className="text-4xl md:text-lg">Mes réservations</p>
+      <p className="text-4xl">Mes réservations</p>
       <br />
 
       <div className="flex items-center p-4 mx-24 mb-8 border border-gray-300 rounded-lg">

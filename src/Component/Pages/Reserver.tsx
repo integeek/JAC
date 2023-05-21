@@ -37,13 +37,12 @@ function Reserver() {
       </Link>
 
       <br />
-      <p className="text-4xl md:text-lg">Réserver un Restaurant</p>
-      <div className="grid grid-cols-3 gap-4 p-8 m-8 mx-auto my-16 sm:gird-cols-4 lg:grid-cols-8">
+      <p className="text-4xl">Reserver un restaurant</p>
+      <div className="grid grid-cols-3 gap-4 p-8 m-8 mx-auto my-16">
         {restaurants.map((restaurant) => (
           <div
             key={restaurant.id}
-            className="transition duration-700 transform shadow-2xl card w-96 bg-base-100 hover:scale-105"
-          >
+            className="transition duration-700 transform shadow-2xl card w-96 bg-base-100 hover:scale-105">
             <figure className="mt-4">
               <img src={"https://via.placeholder.com/150"} alt={restaurant.name} />
             </figure>
