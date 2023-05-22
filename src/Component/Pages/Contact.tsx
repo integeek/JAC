@@ -5,8 +5,6 @@ import Footer from "../Footer/Footer"
 import Axios from "../../Axios"
 import { useState } from "react"
 import { LocationOn, Email, Facebook,LocalPhone } from "@mui/icons-material"
-import New_navigation from "../Navigation/New_navigation"
-import Test1 from "../Navigation/Test1"
 //<p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
 
 function Contact() {
@@ -45,7 +43,7 @@ function Contact() {
   }
   return (
     <div>
-      <New_navigation />
+      <Navigation />
       <title>Contact</title>
 
       <div className="container px-6 mx-auto my-8">
