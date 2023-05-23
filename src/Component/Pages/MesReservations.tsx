@@ -18,6 +18,9 @@ function MesReservations() {
           <span>1 allée des lilas</span>
         </div>
         <div className="flex items-center ml-auto">
+          <div className="pl-20 ">
+            <p>Menu au poisson</p>
+          </div>
           <p className="text-xl">12/12/2020</p>
           <label htmlFor="annuler" className="px-4 py-2 ml-4 font-bold text-white bg-red-500 rounded btn hover:bg-red-600">Annuler</label>
         </div>

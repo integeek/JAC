@@ -10,3 +10,10 @@
 	height: 100%;
 	padding: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    #image, #texte {
+        width: 100%; 
+        float: none; 
+    }
+}

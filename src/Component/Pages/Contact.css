@@ -11,3 +11,10 @@
 	height: 100%;
 	padding: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    #contact, #formulaire {
+        width: 100%; /* Le formulaire et la section de contact occupent 100% de la largeur */
+        float: none; /* Supprime la propriété float pour empiler les éléments */
+    }
+}

@@ -9,7 +9,7 @@ function Connexion() {
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
             <img className="h-20 mr-2 w-30" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           </a>
-          <div className="w-1/3 mx-16 mt-4 bg-white rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 ">
+          <div className="w-full mx-16 mt-4 bg-white rounded-lg shadow lg:w-1/3 dark:border md:mt-4 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-dark md:text-2xl">
                   Connexion

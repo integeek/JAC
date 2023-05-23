@@ -9,7 +9,7 @@ function Navigation() {
   }
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 bg-blue-400">
+    <nav className="flex flex-wrap items-center justify-between p-4 bg-blue-400 ">
       <div className="block lg:hidden">
         <button
           onClick={handleMenuToggle}

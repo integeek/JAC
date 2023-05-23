@@ -19,6 +19,8 @@ function EditerUser() {
   const [actionSelectionnee, setActionSelectionnee] = useState("")
   const [userList, setUserList] = useState<User[]>([])
   const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
+
 
   const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setActionSelectionnee(event.target.value)
@@ -37,6 +39,7 @@ function EditerUser() {
       const response = await Axios.get("/user")
       setUserList(response.data)
       setErrorMessage("")
+      setShowSuccessAlert(true)
     } catch (error) {
       console.error(error)
       setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
@@ -48,6 +51,19 @@ function EditerUser() {
   const handleClick = () => {
     setIsActive(!isActive)
   }
+
+  useEffect(() => {
+    if (showSuccessAlert) {
+      // Masquer la notification après 1 seconde
+      const timeoutId = setTimeout(() => {
+        setShowSuccessAlert(false)
+      }, 1000)
+
+      // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
+      return () => clearTimeout(timeoutId)
+    }
+  }, [showSuccessAlert])
+
 
   return (
     <div>
@@ -102,6 +118,16 @@ function EditerUser() {
         </table>
 
       </div>
+      {showSuccessAlert && (
+        <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>L'utilisateur a été supprimé avec succès !</span>
+          </div>
+        </div>
+      )}
 
       <p>Choisissez ce que vous voulez faire avec les utilisateurs</p>
       <br />

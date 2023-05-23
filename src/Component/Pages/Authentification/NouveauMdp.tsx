@@ -9,7 +9,7 @@ function NouveauMdp() {
           <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-black">
             <img className="h-20 mr-2 w-30" src="https://www.lad.fr/sites/default/files/logo-web-couleur.png" alt="logo"/>
           </a>
-          <div className="w-1/3 p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md">
+          <div className="w-full p-6 bg-white rounded-lg shadow lg:w-1/3 dark:border md:mt-0 sm:max-w-md">
             <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                Nouveau mot de passe
             </h2>

@@ -19,6 +19,7 @@ function EditerFaq() {
   const [faqModifiee, setFaqModifiee] = useState<number | null>(null)
   const [questionModif, setQuestionModif] = useState("")
   const [reponseModif, setReponseModif] = useState("")
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
 
   useEffect(() => {
@@ -52,6 +53,18 @@ function EditerFaq() {
     })
   }
 
+  useEffect(() => {
+    if (showSuccessAlert) {
+      // Masquer la notification après 1 seconde
+      const timeoutId = setTimeout(() => {
+        setShowSuccessAlert(false)
+      }, 1000)
+
+      // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
+      return () => clearTimeout(timeoutId)
+    }
+  }, [showSuccessAlert])
+
   const handleDeleteQuestion = async (id: number): Promise<void> => {
     try {
       await Axios.delete(`/faq/${id}`)
@@ -59,6 +72,7 @@ function EditerFaq() {
       const response = await Axios.get("/faq")
       setFaqList(response.data)
       setErrorMessage("")
+      setShowSuccessAlert(true)
     } catch (error) {
       console.error(error)
       setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
@@ -138,6 +152,16 @@ function EditerFaq() {
           </tbody>
         </table>
       </div>
+      {showSuccessAlert && (
+        <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>L'entrée de la Faq a été supprimé avec succès !</span>
+          </div>
+        </div>
+      )}
       <p><b>Ajouter une entrée dans la Faq :</b></p>
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center w-full">

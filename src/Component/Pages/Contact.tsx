@@ -51,25 +51,6 @@ function Contact() {
         <section className="mb-8 text-gray-800">
 
           <p className="mb-8 text-4xl">Nous contacter</p>     
-
-          <div className="flex flex-wrap" id="formulaire">
-            <div className="w-full px-3 mb-12 grow-0 basis-auto">
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6 form-group">
-                  <input type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required/>
-                </div>
-                <div className="mb-6 form-group">
-                  <input type="email" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8" placeholder="Adresse email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                
-                </div>
-                <div className="mb-6 form-group">
-                  <textarea className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlTextarea13" rows={3} placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
-                </div>
- 
-                <button type="submit" className=" w-full px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Envoyer</button>
-              </form>
-            </div>
-          </div>
           <div className="w-full grow-0 shrink-0 basis-auto" id='contact'>
             <div className="flex flex-wrap">
               <div className="w-full px-3 mb-12 grow-0 shrink-0 basis-auto">
@@ -117,6 +98,24 @@ function Contact() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="flex flex-wrap" id="formulaire">
+            <div className="w-full px-3 mb-12 grow-0 basis-auto">
+              <form onSubmit={handleSubmit}>
+                <div className="mb-6 form-group">
+                  <input type="text" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7" placeholder="Nom" value={nom} onChange={(e) => setNom(e.target.value)} required/>
+                </div>
+                <div className="mb-6 form-group">
+                  <input type="email" className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8" placeholder="Adresse email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                
+                </div>
+                <div className="mb-6 form-group">
+                  <textarea className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlTextarea13" rows={3} placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
+                </div>
+ 
+                <button type="submit" className=" w-full px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Envoyer</button>
+              </form>
             </div>
           </div>
         </section>

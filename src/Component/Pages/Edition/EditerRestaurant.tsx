@@ -16,6 +16,7 @@ function EditerRestaurant() {
     const [nouveauRestaurant, setNouveauRestaurant] = useState("") // Pour créer un nouveau restaurant
     const [nouvelleAdresse, setNouvelleAdresse] = useState("") 
     const [restaurantList, setRestaurantList] = useState<Restaurant[]>([])
+    const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
     // Récuperer les données des restaurants dans la BDD
     useEffect(() => {
@@ -57,16 +58,31 @@ function EditerRestaurant() {
         const response = await Axios.get("/restaurant")
         setRestaurantList(response.data)
         setErrorMessage("")
+        setShowSuccessAlert(true) // Afficher l'alerte de succès
       } catch (error) {
         console.error(error)
         setErrorMessage("Une erreur est survenue lors de la suppression du restaurant.")
       }
     }
 
+    useEffect(() => {
+      if (showSuccessAlert) {
+        // Masquer la notification après 1 seconde
+        const timeoutId = setTimeout(() => {
+          setShowSuccessAlert(false)
+        }, 1000)
+  
+        // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
+        return () => clearTimeout(timeoutId)
+      }
+    }, [showSuccessAlert])
+  
+
     return (
       <div>
         <title>Editer les restaurants</title>
         <Navigation />
+
         <div className="center">
           <table className="mx-auto my-8 shadow-md"> 
             <thead>
@@ -108,12 +124,23 @@ function EditerRestaurant() {
             </tbody>
           </table>
         </div>
+        {showSuccessAlert && (
+          <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Le restaurant a été supprimé avec succès !</span>
+            </div>
+          </div>
+        )}
         <div>
           <p><b>Ajouter un restaurant :</b></p>
           <form onSubmit={(e) => {
             e.preventDefault()
             handleAjouterRestaurant()
           }}>
+
             <div className="flex flex-col items-center w-full">
               <p className="m-4">Entrez le nom du restaurant</p>
               <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
@@ -126,7 +153,10 @@ function EditerRestaurant() {
             <br /><br />
           </form>
         </div>
-      
+
+
+
+        <br/><br />
         <Footer />
       </div>
     )
