@@ -50,7 +50,6 @@ function App() {
           <Route path="/reservationrestaurateur" element={<ReservationRestaurateur />} />
           <Route path="/confirmation" element={<ConfirmationEmail />} />
           <Route path="/editcontact" element={<EditerContact />} />
-
         </Routes>
       </BrowserRouter>
     </div>

@@ -32,9 +32,17 @@ function EditerContact() {
       setContactList(response.data)
       setErrorMessage("")
       setShowSuccessAlert(true)
-    } catch (error) {
-      console.error(error)
-      setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
+    }  catch (error) {
+      console.log(error)
+      const errorMessage =
+        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+      setErrorMessage(errorMessage)
+      setShowSuccessAlert(false)
+  
+      // Masquer le message d'erreur après 2 secondes
+      setTimeout(() => {
+        setErrorMessage("")
+      }, 2000)
     }
   }
 
@@ -43,7 +51,7 @@ function EditerContact() {
       // Masquer la notification après 1 seconde
       const timeoutId = setTimeout(() => {
         setShowSuccessAlert(false)
-      }, 1000)
+      }, 2000)
 
       // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
       return () => clearTimeout(timeoutId)
@@ -107,6 +115,7 @@ function EditerContact() {
             </div>
           </div>
         )}
+        
 
       </div>
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

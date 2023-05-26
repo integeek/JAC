@@ -47,9 +47,17 @@ function EditerFaq() {
       setFaqModifiee(null) // reset the modification state
       setQuestionModif("")
       setReponseModif("")
-    }).catch(error => {
-      setErrorMessage("Erreur lors de la modification de la FAQ")
-      console.error(error)
+    }) .catch((error) => {
+      console.log(error)
+      setErrorMessage(
+        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+      )
+      setShowSuccessAlert(false)
+    
+      // Masquer le message d'erreur après 2 secondes
+      setTimeout(() => {
+        setErrorMessage("")
+      }, 2000)
     })
   }
 
@@ -58,7 +66,7 @@ function EditerFaq() {
       // Masquer la notification après 1 seconde
       const timeoutId = setTimeout(() => {
         setShowSuccessAlert(false)
-      }, 1000)
+      }, 2000)
 
       // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
       return () => clearTimeout(timeoutId)
@@ -73,9 +81,17 @@ function EditerFaq() {
       setFaqList(response.data)
       setErrorMessage("")
       setShowSuccessAlert(true)
-    } catch (error) {
-      console.error(error)
-      setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
+    }  catch (error) {
+      console.log(error)
+      const errorMessage =
+        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+      setErrorMessage(errorMessage)
+      setShowSuccessAlert(false)
+  
+      // Masquer le message d'erreur après 2 secondes
+      setTimeout(() => {
+        setErrorMessage("")
+      }, 2000)
     }
   }
 
@@ -100,9 +116,18 @@ function EditerFaq() {
         setNouvelleQuestion("")
         setNouvelleReponse("")
       })
-      .catch(() => {
-        setErrorMessage("Une erreur s'est produite.")
+      .catch((error) => {
+        console.log(error)
+        const errorMessage = "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+        setErrorMessage(errorMessage)
+        setShowSuccessAlert(false)
+      
+        // Masquer le message d'erreur après 2 secondes
+        setTimeout(() => {
+          setErrorMessage("")
+        }, 2000)
       })
+      
   }
   
   return (
@@ -169,12 +194,21 @@ function EditerFaq() {
           <input type="text" placeholder="Votre question" className="w-full max-w-xs input bg-gray-50 input-bordered" value={nouvelleQuestion} onChange={(e) => setNouvelleQuestion(e.target.value)} />
           <p className="m-4">Entrez la réponse</p>
           <textarea id="message" className=" textarea textarea-bordered block p-2.5 w-full max-w-xs text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="La réponse" value={nouvelleReponse}  onChange={(e) => setNouvelleReponse(e.target.value)}></textarea>
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <button onClick={handleAjouterQuestion} className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
         </div>
       </div>
 
       <Footer />
+      {errorMessage && (
+        <div className="alert alert-error shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{errorMessage}</span>
+          </div>
+        </div>
+      )}
       <br /><br />
 
     </div>

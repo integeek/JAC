@@ -26,6 +26,8 @@ function Menu1() {
   const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
   const [startDate, setStartDate] = useState(new Date())  
   const [selectedDate, setSelectedDate] = useState<null | Date>(null)
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
+
 
   const handleQuantityChange = (index: number, value: number) => {
     const newQuantities = [...quantities]
@@ -45,6 +47,18 @@ function Menu1() {
         console.log(error)
       })
   }, [])
+
+  useEffect(() => {
+    if (showSuccessAlert) {
+      // Masquer la notification après 1 seconde
+      const timeoutId = setTimeout(() => {
+        setShowSuccessAlert(false)
+      }, 2000)
+
+      // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
+      return () => clearTimeout(timeoutId)
+    }
+  }, [showSuccessAlert])
 
   const handleAjouterReservation = () => {
     const totalQuantity = quantities.reduce((acc, cur) => acc + cur, 0)
@@ -67,12 +81,12 @@ function Menu1() {
     })
       .then((response) => {
         setCommentaire("")
+        setShowSuccessAlert(true)
       })
       .catch(() => {
         setErrorMessage("Une erreur s'est produite.")
       })
   }
-
 
   return (
     <div>
@@ -110,6 +124,16 @@ function Menu1() {
         <label htmlFor="commentaire" className="block py-6 mb-2 text-sm font-medium text-black " >Vos commentaires par rapport aux menus</label> 
         <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires" value={commentaire} onChange={(e) => setCommentaire(e.target.value)}></textarea>
         <button onClick={handleAjouterReservation} className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Réserver</button>
+        {showSuccessAlert && (
+          <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Votre menu a bien été réservé !</span>
+            </div>
+          </div>
+        )}
         <Footer />
       </div>
     </div>

@@ -45,8 +45,17 @@ function EditerRestaurant() {
           setNouveauRestaurant("")
           setNouvelleAdresse("")
         })
-        .catch(() => {
-          setErrorMessage("Une erreur s'est produite.")
+        .catch((error) => {
+          console.log(error)
+          setErrorMessage(
+            "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+          )
+          setShowSuccessAlert(false)
+        
+          // Masquer le message d'erreur après 2 secondes
+          setTimeout(() => {
+            setErrorMessage("")
+          }, 2000)
         })
     }
     
@@ -60,17 +69,25 @@ function EditerRestaurant() {
         setErrorMessage("")
         setShowSuccessAlert(true) // Afficher l'alerte de succès
       } catch (error) {
-        console.error(error)
-        setErrorMessage("Une erreur est survenue lors de la suppression du restaurant.")
+        console.log(error)
+        const errorMessage =
+          "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+        setErrorMessage(errorMessage)
+        setShowSuccessAlert(false)
+    
+        // Masquer le message d'erreur après 2 secondes
+        setTimeout(() => {
+          setErrorMessage("")
+        }, 2000)
       }
     }
-
+    
     useEffect(() => {
       if (showSuccessAlert) {
         // Masquer la notification après 1 seconde
         const timeoutId = setTimeout(() => {
           setShowSuccessAlert(false)
-        }, 1000)
+        }, 2000)
   
         // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
         return () => clearTimeout(timeoutId)
@@ -147,13 +164,20 @@ function EditerRestaurant() {
               <p className="m-4">Entrez l'adresse du restaurant</p>
               <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
               <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <br /><br />
             </div>         
-            <br /><br />
           </form>
         </div>
-
+        {errorMessage && (
+          <div className="alert alert-error shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{errorMessage}</span>
+            </div>
+          </div>
+        )}
 
 
         <br/><br />

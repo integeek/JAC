@@ -3,7 +3,7 @@ import "./Contact.css"
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import Axios from "../../Axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { LocationOn, Email, Facebook,LocalPhone } from "@mui/icons-material"
 //<p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
 
@@ -13,6 +13,8 @@ function Contact() {
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -32,15 +34,35 @@ function Contact() {
           setEmail("")
           setMessage("")
           setError("")
+          setShowSuccessAlert(true)
         })
         .catch((error) => {
           console.log(error)
           setError(
             "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
           )
+          setShowSuccessAlert(false)
+        
+          // Masquer le message d'erreur après 2 secondes
+          setTimeout(() => {
+            setError("")
+          }, 2000)
         })
     }
   }
+
+  useEffect(() => {
+    if (showSuccessAlert) {
+      // Masquer la notification après 1 seconde
+      const timeoutId = setTimeout(() => {
+        setShowSuccessAlert(false)
+      }, 2000)
+
+      // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
+      return () => clearTimeout(timeoutId)
+    }
+  }, [showSuccessAlert])
+
   return (
     <div>
       <Navigation />
@@ -119,6 +141,27 @@ function Contact() {
             </div>
           </div>
         </section>
+        {showSuccessAlert && (
+          <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Votre message a bien été envoyé!</span>
+            </div>
+          </div>
+        )}
+        {error && (
+          <div className="alert alert-error shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{error}</span>
+            </div>
+          </div>
+        )}
+
 
       </div>
 

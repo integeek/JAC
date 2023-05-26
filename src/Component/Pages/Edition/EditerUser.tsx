@@ -40,9 +40,17 @@ function EditerUser() {
       setUserList(response.data)
       setErrorMessage("")
       setShowSuccessAlert(true)
-    } catch (error) {
-      console.error(error)
-      setErrorMessage("Une erreur est survenue lors de la suppression de la question.")
+    }  catch (error) {
+      console.log(error)
+      const errorMessage =
+        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
+      setErrorMessage(errorMessage)
+      setShowSuccessAlert(false)
+  
+      // Masquer le message d'erreur après 2 secondes
+      setTimeout(() => {
+        setErrorMessage("")
+      }, 2000)
     }
   }
 
@@ -57,7 +65,7 @@ function EditerUser() {
       // Masquer la notification après 1 seconde
       const timeoutId = setTimeout(() => {
         setShowSuccessAlert(false)
-      }, 1000)
+      }, 2000)
 
       // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
       return () => clearTimeout(timeoutId)
@@ -136,7 +144,17 @@ function EditerUser() {
         <option>Approuver un utilisateur</option>
         <option>Désactiver un utilisateur</option>
 
-      </select>      
+      </select>  
+      {errorMessage && (
+        <div className="alert alert-error shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{errorMessage}</span>
+          </div>
+        </div>
+      )}    
       <Footer />
     </div>
   )
