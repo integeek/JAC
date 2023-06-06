@@ -1,5 +1,5 @@
-import Navigation from "../Navigation/Navigation"
-import Footer from "../Footer/Footer"
+import Navigation from "../../../Navigation/Navigation"
+import Footer from "../../../Footer/Footer"
 import { Link } from "react-router-dom"
 
 function Compte() {
@@ -32,7 +32,9 @@ function Compte() {
             <p id="email" className="p-2 border border-2 border-gray-300 border-solid rounded-md">Test@gmail.com</p>
           </div>
       
-          <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Modifier mes informations</button>
+          <Link to="/editcompte" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">
+        Modifier mes informations
+          </Link>      
         </div>
       </div>
       <Footer />

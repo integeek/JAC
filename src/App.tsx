@@ -7,7 +7,7 @@ import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
 import MesReservations from "./Component/Pages/MesReservations"
 import Mentions from "./Component/Pages/MentionLegale"
-import Compte from "./Component/Pages/Compte"
+import Compte from "./Component/Pages/Authentification/Compte/Compte"
 import Connexion from "./Component/Pages/Authentification/Connexion"
 import Inscription from "./Component/Pages/Authentification/Inscription"
 import Menu1 from "./Component/Pages/Menus/Menu1"
@@ -22,6 +22,7 @@ import EditerRestaurant from "./Component/Pages/Edition/EditerRestaurant"
 import ReservationRestaurateur from "./Component/Pages/ReservationRestaurateur"
 import ConfirmationEmail from "./Component/Pages/Authentification/ConfirmationEmail"
 import EditerContact from "./Component/Pages/Edition/EditerContact"
+import EditerCompte from "./Component/Pages/Authentification/Compte/EditerCompte"
 // relier les différentes pages avec l'url
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
           <Route path="/reservationrestaurateur" element={<ReservationRestaurateur />} />
           <Route path="/confirmation" element={<ConfirmationEmail />} />
           <Route path="/editcontact" element={<EditerContact />} />
+          <Route path="/editcompte" element={<EditerCompte />} />
+
         </Routes>
       </BrowserRouter>
     </div>

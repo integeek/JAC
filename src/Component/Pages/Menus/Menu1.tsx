@@ -124,6 +124,13 @@ function Menu1() {
         <label htmlFor="commentaire" className="block py-6 mb-2 text-sm font-medium text-black " >Vos commentaires par rapport aux menus</label> 
         <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires" value={commentaire} onChange={(e) => setCommentaire(e.target.value)}></textarea>
         <button onClick={handleAjouterReservation} className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Réserver</button>
+        
+        <button className="bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">
+          <Link to="/reserver" className="text-white">
+          Retourner à la page des restaurants
+          </Link>
+        </button>
+
         {showSuccessAlert && (
           <div className="alert alert-success shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
             <div>
