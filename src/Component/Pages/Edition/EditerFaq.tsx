@@ -16,7 +16,6 @@ function EditerFaq() {
   const [nouvelleReponse, setNouvelleReponse] = useState("")
   const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
   const [faqSelectionne, setFaqSelectionne] = useState<number | null>(null)
-  const [faqModifiee, setFaqModifiee] = useState<number | null>(null)
   const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
   const [showModal, setShowModal] = useState(false)
@@ -29,19 +28,37 @@ function EditerFaq() {
     })
   }, [])
 
-  const handleEditClick = (id: number) => {
+  const handleEditClick = (id: number) => { //Afficher le modal de modification quand l'icone est cliquée
     setFaqSelectionne(id)
     setShowModal(true)
   }
-  
+
   const handleSaveClick = async (): Promise<void> => {
     try {
       if (faqSelectionne !== null) {
-        const response = await Axios.put(`/faq/${faqSelectionne}`, { question: questionModif, answer: reponseModif })
-        setFaqList(response.data)
-        setErrorMessage("")
-        setShowSuccessAlert(true)
-        setShowModal(false)
+        // Trouver l'entrée de la FAQ correspondante
+        const faqToUpdate = faqList.find((faq) => faq.id === faqSelectionne)
+  
+        if (faqToUpdate) {
+          // Si on a trouvé l'élément à modifier
+          const updatedFaq = {
+            id: faqToUpdate.id,
+            question: questionModif !== "" ? questionModif : faqToUpdate.question, // Remplace la question par la modification, sinon conserve la question initiale
+            answer: reponseModif !== "" ? reponseModif : faqToUpdate.answer, // Remplace la réponse par la modification, sinon conserve la réponse initiale
+          }
+  
+          // Effectuer la requête PATCH vers l'API pour mettre à jour la FAQ
+          const response = await Axios.patch(`/faq/${faqSelectionne}`, updatedFaq)
+  
+          // Mettre à jour la liste des FAQ avec les données mises à jour
+          const updatedList = faqList.map((faq) =>
+            faq.id === faqSelectionne ? response.data : faq
+          )
+          setFaqList(updatedList)
+  
+          setErrorMessage("") // Réinitialiser le message d'erreur
+          setShowModal(false) // Masquer le modal
+        }
       }
     } catch (error) {
       console.log(error)
@@ -56,6 +73,9 @@ function EditerFaq() {
       }, 2000)
     }
   }
+  
+  
+  
   
   
 
