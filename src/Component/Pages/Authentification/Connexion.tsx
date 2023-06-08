@@ -1,6 +1,41 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import Axios from "../../../Axios"
+
+
 
 function Connexion() {
+
+  const navigate = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleEmailChange = (e :React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
+
+  const handleSubmit = async (e :React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      console.log("test")
+      const response = await Axios.post("authentication/log-in", {
+        email: email,
+        password: password,
+      })
+      console.log("envoie réussi")
+      // Authentification réussie
+      console.log(response.data)
+      navigate("/reserver")
+    } catch (error) {
+      // Gérer les erreurs d'authentification ici
+      console.error(error)
+    }
+  }
+
   return (
     <div>
       <br /> <br />
@@ -14,20 +49,20 @@ function Connexion() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-dark md:text-2xl">
                   Connexion
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-black">Votre email</label>
-                  <input type="email" name="email" id="email" className=" peer bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="nom@mail.com"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
+                  <input type="email" name="email" id="email" className=" peer bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="nom@mail.com"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={email} onChange={handleEmailChange} required/>
                   <p className="mt-2 invisible peer-placeholder-shown:!invisible peer-invalid:visible text-pink-600 text-sm">Le format de votre adresse mail n'est pas valide</p>                
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Votre mot de passe</label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required/>
+                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-base-300 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"  value={password} onChange={handlePasswordChange} required/>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
-                      <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required/>
+                      <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" />
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="remember" className="text-black">Se souvenir de moi</label>
