@@ -9,6 +9,8 @@ function Connexion() {
   const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
+
 
   const handleEmailChange = (e :React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -31,8 +33,14 @@ function Connexion() {
       console.log(response.data)
       navigate("/reserver")
     } catch (error) {
-      // Gérer les erreurs d'authentification ici
-      console.error(error)
+      console.log(error)
+      const errorMessage =
+        "La combinaison email/mot de passe est incorrecte."
+      setErrorMessage(errorMessage)  
+      // Masquer le message d'erreur après 2 secondes
+      setTimeout(() => {
+        setErrorMessage("")
+      }, 2000)
     }
   }
 
@@ -74,11 +82,19 @@ function Connexion() {
                 <p className="text-sm font-light text-black">
                       Pas encore de compte ? <Link to="/inscription" className="font-medium text-black text-primary-600 hover:underline">S'inscrire</Link>
                 </p>
-               
-
               </form>
             </div>
           </div>
+          {errorMessage && (
+            <div className="alert alert-error shadow-lg w-1/2 mx-auto flex justify-center items-center transition-opacity duration-500">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{errorMessage}</span>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>

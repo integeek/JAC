@@ -1,7 +1,8 @@
 import "./App.css"
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Routes} from "react-router-dom"
+import { BrowserRouter, Route, Routes, Navigate} from "react-router-dom"
+import { useCookies } from "react-cookie"
 import Faq from "./Component/Pages/Faq"
 import Contact from "./Component/Pages/Contact"
 import Reserver from "./Component/Pages/Reserver"
@@ -23,8 +24,13 @@ import ReservationRestaurateur from "./Component/Pages/ReservationRestaurateur"
 import ConfirmationEmail from "./Component/Pages/Authentification/ConfirmationEmail"
 import EditerContact from "./Component/Pages/Edition/EditerContact"
 import EditerCompte from "./Component/Pages/Authentification/Compte/EditerCompte"
+import PrivateRoute from "./Component/Pages/Authentification/privateRoute"
 // relier les différentes pages avec l'url
 function App() {
+
+  const [cookies] = useCookies(["Authentication"])
+  const isAuthenticated = !!cookies.Authentication
+  
   return (
     <div className ="App">
       <link rel="shortcut icon" type="image/png" href="https://www.lad.fr/sites/default/files/LOGO_LAD_favicon.png" title="Logo Les ailes déployées"/>
@@ -35,7 +41,9 @@ function App() {
           <Route path="/faq" element={<Faq />} />  
           <Route path="/contact" element={<Contact />} />  
           <Route path="/reserver" element={<Reserver />} />     
+         
           <Route path="/reservation" element={<MesReservations />} />  
+
           <Route path="/mentions" element={<Mentions />} />  
           <Route path="/compte" element={<Compte />} />  
           <Route path="/connexion" element={<Connexion />} />  
@@ -67,3 +75,7 @@ ReactDOM.render(
   document.getElementById("root")
 )
 export default App
+/* <Route
+            path="/reservation"
+            element={<PrivateRoute isAuthenticated={isAuthenticated} path="/reservation" element={<MesReservations />} />}
+          />*/

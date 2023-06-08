@@ -1,12 +1,25 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import Axios from "../../Axios"
 
 function Navigation() {
+ 
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   const handleMenuToggle = () => {
     setIsOpen(!isOpen)
   }
+
+  const handleLogout = async () => {
+    try {
+      await Axios.post("authentication/log-out")
+      navigate("/connexion") // 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  
 
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 bg-blue-400 ">
@@ -69,7 +82,8 @@ function Navigation() {
                     <Link to="/compte" className="active:bg-gray-200"> Mon compte </Link>
                   </li>
                   <li>
-                    <a className="active:bg-gray-200">Se déconnecter</a>
+                    <a onClick={handleLogout} className="active:bg-gray-200">Se déconnecter</a>
+
                   </li>
                 </ul>
               </li>
