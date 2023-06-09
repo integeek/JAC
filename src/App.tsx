@@ -25,11 +25,18 @@ import ConfirmationEmail from "./Component/Pages/Authentification/ConfirmationEm
 import EditerContact from "./Component/Pages/Edition/EditerContact"
 import EditerCompte from "./Component/Pages/Authentification/Compte/EditerCompte"
 import PrivateRoute from "./Component/Pages/Authentification/privateRoute"
+import ErreurPermission from "./Component/Pages/ErreurPermission"
 // relier les différentes pages avec l'url
 function App() {
 
-  const [cookies] = useCookies(["Authentication"])
+  const [cookies, setCookie] = useCookies(["Authentication"])
+  const { Authentication: userRole } = cookies
   const isAuthenticated = !!cookies.Authentication
+
+  setCookie("Authentication", "cookie value", {
+    sameSite: "none",
+    secure: true, // Assurez-vous également que le cookie est sécurisé (HTTPS)
+  })
   
   return (
     <div className ="App">
@@ -41,9 +48,8 @@ function App() {
           <Route path="/faq" element={<Faq />} />  
           <Route path="/contact" element={<Contact />} />  
           <Route path="/reserver" element={<Reserver />} />     
-         
           <Route path="/reservation" element={<MesReservations />} />  
-
+          <Route path="/editfaq" element={<EditerFaq />} />  
           <Route path="/mentions" element={<Mentions />} />  
           <Route path="/compte" element={<Compte />} />  
           <Route path="/connexion" element={<Connexion />} />  
@@ -52,7 +58,6 @@ function App() {
           <Route path="/nouveaumdp" element={<NouveauMdp />} />  
           <Route path="/menu1" element={<Menu1 />} />  
           <Route path="*" element={<Erreur404 />} />  
-          <Route path="/editfaq" element={<EditerFaq />} />  
           <Route path="/editmenus" element={<EditerMenus />} />  
           <Route path="/edituser" element={<EditerUser />} />  
           <Route path="/editrestaurant" element={<EditerRestaurant />} />  
@@ -60,6 +65,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmationEmail />} />
           <Route path="/editcontact" element={<EditerContact />} />
           <Route path="/editcompte" element={<EditerCompte />} />
+          <Route path="/erreurperm" element={<ErreurPermission />} />
 
         </Routes>
       </BrowserRouter>
@@ -75,7 +81,4 @@ ReactDOM.render(
   document.getElementById("root")
 )
 export default App
-/* <Route
-            path="/reservation"
-            element={<PrivateRoute isAuthenticated={isAuthenticated} path="/reservation" element={<MesReservations />} />}
-          />*/
+//          <Route element={<PrivateRoute path="/editfaq" element={<EditerFaq />} isAuthenticated={isAuthenticated} allowedRoles={["admin", "restaurateur"]} userRole={userRole} />} />
