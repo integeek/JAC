@@ -10,7 +10,7 @@ function Accueil() {
       <section className="flex flex-col h-screen px-2 py-32 bg-white">
         <div className="container flex items-center max-w-6xl px-8 mx-auto">
           <div className="flex flex-wrap items-center sm:-mx-3">
-            <div className="col-span-1  md:w-1/2 justify-left" id="texte">
+            <div className="col-span-1 md:w-1/2 justify-left" id="texte">
               <div className="pb-6">
                 <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
                   <span className="inline-block xl:inline">Un site pour pouvoir réserver ses repas</span>
