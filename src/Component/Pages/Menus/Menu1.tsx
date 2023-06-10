@@ -59,27 +59,32 @@ function Menu1() {
       return () => clearTimeout(timeoutId)
     }
   }, [showSuccessAlert])
-
   const handleAjouterReservation = () => {
-    const totalQuantity = quantities.reduce((acc, cur) => acc + cur, 0)
-    const menuIds = repas.filter((repas, index) => quantities[index] > 0).map((repas) => repas.id)
-    if (menuIds.length === 0) {
+    const menus = repas
+      .filter((repas, index) => quantities[index] > 0)
+      .map((repas, index) => {
+        return {
+          menuId: repas.id,
+          quantity: quantities[index]
+        }
+      })
+  
+    if (menus.length === 0) {
       setErrorMessage("Vous devez sélectionner au moins un menu.")
       return
     }
-    if (totalQuantity === 0) {
-      setErrorMessage("Vous devez sélectionner au moins un menu.")
-      return
-    }
-
-    Axios.post("/reservation", {
+  
+    const totalQuantity = menus.reduce((acc, cur) => acc + cur.quantity, 0)
+  
+    const reservationData = {
       commentaire: commentaire,
-      menusId: menuIds.join(","),
+      menus: menus.map(menu => menu.menuId).join(","),
       nbPersonne: totalQuantity,
-      
-      date: selectedDate?.toISOString() // <--- Utilisation de la date sélectionnée dans la requête
-    })
+    }
+  
+    Axios.post("/reservation", reservationData)
       .then((response) => {
+        console.log(response)
         setCommentaire("")
         setShowSuccessAlert(true)
       })
@@ -87,7 +92,7 @@ function Menu1() {
         setErrorMessage("Une erreur s'est produite.")
       })
   }
-
+  
   return (
     <div>
       <Navigation />
