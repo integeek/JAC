@@ -11,12 +11,6 @@ function Compte() {
         <Link to="/edituser" className="fixed top-0 right-0 px-4 py-2 m-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Éditer</Link>
         <p className="p-6 text-4xl md:text-lg">Mon compte</p>
         <div className="w-1/3">
-          <div className="avatar">
-            <div className="w-24 rounded-full">
-              <img src="https://via.placeholder.com/100" alt="Avatar" />
-            </div>
-          </div>
-      
           <div className="mb-4">
             <label htmlFor="nom" className="block mb-2 font-medium">Nom</label>
             <p id="nom" className="p-2 border border-2 border-gray-300 border-solid rounded-md">Doe</p>

@@ -2,6 +2,8 @@ import Footer from "../../Footer/Footer"
 import Navigation from "../../Navigation/Navigation"
 import { useState, useEffect } from "react"
 import Axios from "../../../Axios"
+import HelpIcon from "@mui/icons-material/Help"
+
 
 interface Faq {
   id: number;
@@ -21,6 +23,8 @@ function EditerFaq() {
   const [showModal, setShowModal] = useState(false)
   const [questionModif, setQuestionModif] = useState("")
   const [reponseModif, setReponseModif] = useState("")
+  const [showModalAide, setShowModalAide] = useState(false)
+
 
   useEffect(() => {
     Axios.get("/faq").then((response) => {
@@ -32,6 +36,11 @@ function EditerFaq() {
     setFaqSelectionne(id)
     setShowModal(true)
   }
+
+  const handleHelpClick = () => {
+    setShowModalAide(true)
+  }
+
 
   const handleShowConfirmationModal = (id : number) => {
     setShowConfirmationModal(true)
@@ -194,11 +203,37 @@ function EditerFaq() {
                     </svg>
                   </button>
                 </td>
+                <div className="fixed z-20 flex items-center rounded-lg bottom-9 right-10">
+                  <button  onClick={() => handleHelpClick()} className="ml-2 bg-blue-400 text-white font-medium text-xs px-6 py-2.5 rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center">
+                    <HelpIcon className="mr-2" /> Besoin d'aide ?
+                  </button>
+                </div>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {showModalAide && (
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div className="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+                <p className="mt-4 text-gray-600">Cette page permet de visualiser toutes les entrées de la Faq. <br /><br />
+                  Vous pouvez ensuite soit ajouter une nouvelle entrée dans la faq, en supprimer une ou en modifier une.</p>
+              </div>
+              <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={() => setShowModalAide(false)}>
+            Fermer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {showModal && (
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">

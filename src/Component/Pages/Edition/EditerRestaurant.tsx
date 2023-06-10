@@ -3,6 +3,7 @@ import Navigation from "../../Navigation/Navigation"
 import { useState } from "react"
 import { useEffect } from "react"
 import Axios from "../../../Axios"
+import HelpIcon from "@mui/icons-material/Help"
 
 function EditerRestaurant() {
  
@@ -23,6 +24,7 @@ function EditerRestaurant() {
     const [showModal, setShowModal] = useState(false)
     const [restaurantSelection, setRestaurantSelection] = useState("")
     const [showConfirmationModal, setShowConfirmationModal] = useState(false)
+    const [showModalAide, setShowModalAide] = useState(false)
 
 
     // Récuperer les données des restaurants dans la BDD
@@ -40,6 +42,10 @@ function EditerRestaurant() {
     const handleEditClick = (id: string) => { //Afficher le modal de modification quand l'icone est cliquée
       setRestaurantSelection(id)
       setShowModal(true)
+    }
+
+    const handleHelpClick = () => {
+      setShowModalAide(true)
     }
 
     const handleSaveClick = async (): Promise<void> => {
@@ -197,7 +203,11 @@ function EditerRestaurant() {
                       </svg>
                     </button>
                   </td>
-
+                  <div className="fixed z-20 flex items-center rounded-lg bottom-9 right-10">
+                    <button  onClick={() => handleHelpClick()} className="ml-2 bg-blue-400 text-white font-medium text-xs px-6 py-2.5 rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center">
+                      <HelpIcon className="mr-2" /> Besoin d'aide ?
+                    </button>
+                  </div>
                 </tr>
               ))}
             </tbody>
@@ -246,7 +256,27 @@ function EditerRestaurant() {
             </div>
           </div>
         )}
-
+        {showModalAide && (
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+              <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              </div>
+              <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+              <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div className="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+                  <p className="mt-4 text-gray-600">Cette page permet de visualiser tous les restaurants. <br /><br />
+                  Vous pouvez ensuite soit ajouter un restaurant, en supprimer un ou modifier les informations d'un restaurant existant.</p>
+                </div>
+                <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
+                  <button className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={() => setShowModalAide(false)}>
+            Fermer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         {showSuccessAlert && (
           <div className="flex items-center justify-center w-1/2 mx-auto shadow-lg alert alert-success">
             <div>
