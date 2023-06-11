@@ -31,12 +31,23 @@ function EditerUser() {
   const [roleModif, setRoleModif] = useState("")
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [showModalAide, setShowModalAide] = useState(false)
+  const [userInfo, setUserInfo] = useState<User | null>(null)
+  const [showModalInfo, setShowModalInfo] = useState(false)
+
 
 
   const handleActionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setActionSelectionnee(event.target.value)
   }
   
+  const handleShowInfo = (id: string) => {
+    const selectedUser = userList.find(user => user.id === id)
+    if (selectedUser) {
+      setShowModalInfo(true)
+      setUserInfo(selectedUser)
+    }
+  }
+
   const handleShowConfirmationModal = (id : string) => {
     setShowConfirmationModal(true)
     setUserSelection(id)
@@ -170,6 +181,7 @@ function EditerUser() {
           <thead>
             <tr>
               <th className="px-4 py-2">Les utilisateurs</th>
+              <th className="px-4 py-2">Infos</th>
               <th className="px-4 py-2">Supprimer</th>
               <th className="px-4 py-2">Modifier</th>
               <th className="px-4 py-2">Activer/Désactiver</th>
@@ -179,6 +191,17 @@ function EditerUser() {
             {userList.map(user => (
               <tr key={user.id}>
                 <td className="order-4 px-4 py-2 border border-black b">{user.name} {user.firstname}</td>
+                <td className="order-4 px-4 py-2 border border-black text-center">
+                  <div className="flex items-center justify-center">
+                    <button onClick={() => handleShowInfo(user.id)} className="btn btn-ghost btn-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="8" cy="8" r="7" />
+                        <line x1="8" y1="11" x2="8" y2="8" />
+                        <line x1="8" y1="6" x2="8" y2="6" />
+                      </svg>
+                    </button>
+                  </div>
+                </td>
                 <td className="order-4 px-4 py-2 border border-black b">
                   <button onClick={() => handleShowConfirmationModal(user.id)} className="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff5722" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -220,6 +243,43 @@ function EditerUser() {
           </tbody>
         </table>
       </div>
+      {showModalInfo && (
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div className="inline-block w-full max-w-lg overflow-hidden text-left align-middle transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:p-6">
+              {userInfo ? (
+                <div>
+                  <h2 className="text-2xl font-bold mb-4">{userInfo.name}</h2>
+                  <div className="flex items-center mb-2">
+                    <p>Prenom : {userInfo.firstname}</p>
+                  </div>
+                  <div className="flex items-center mb-2">
+                    <p>Nom : {userInfo.name}</p>
+                  </div>
+                  <div className="flex items-center mb-2">
+                    <p>Email : {userInfo.email}</p>
+                  </div>
+                  <div className="flex items-center">
+                    <p>Role : {userInfo.role}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center">Pas d'utilisateur sélectionné</div>
+              )}
+
+              <div className="mt-6 flex justify-end">
+                <button className="px-4 py-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:text-sm" onClick={() => setShowModalInfo(false)}>
+            Fermer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {showModal && (
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">

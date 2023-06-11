@@ -73,7 +73,7 @@ function Reserver() {
                 <p>{restaurant.address}</p>
               </div>
               <div className="justify-end card-actions">
-                <div className="flex justify-center items-center"> {/* Conteneur pour centrer les boutons */}
+                <div className="flex justify-center items-center  justify-self-center "> 
                   <button onClick={() => handleInfo(restaurant.id)} className="bg-gray-400 border-gray-400 btn hover:bg-gray-600 btn-active mr-10">
               Info
                   </button>
