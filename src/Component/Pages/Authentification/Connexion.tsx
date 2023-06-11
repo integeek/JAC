@@ -20,29 +20,44 @@ function Connexion() {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = async (e :React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      console.log("test")
       const response = await Axios.post("authentication/log-in", {
         email: email,
         password: password,
       })
-      console.log("envoie réussi")
-      // Authentification réussie
+      console.log("Authentification réussie")
       console.log(response.data)
       navigate("/reserver")
-    } catch (error) {
+    } catch (error: any) {
       console.log(error)
-      const errorMessage =
-        "La combinaison email/mot de passe est incorrecte."
-      setErrorMessage(errorMessage)  
-      // Masquer le message d'erreur après 2 secondes
+      if (error.response) {
+        console.log("Error response:", error.response)
+        const status = error.response.status
+        if (status === 400) {
+          const errorMessage = "La combinaison email/mot de passe est incorrecte."
+          setErrorMessage(errorMessage)
+        } else if (status === 403) {
+          const errorMessage = "Votre compte est désactivé. Veuillez contacter l'administrateur."
+          setErrorMessage(errorMessage)
+        }
+      } else {
+        console.log("Network or other error:", error)
+        const errorMessage = "Une erreur s'est produite. Veuillez réessayer plus tard."
+        setErrorMessage(errorMessage)
+      }
+  
+      // Hide the error message after 2 seconds
       setTimeout(() => {
         setErrorMessage("")
       }, 2000)
     }
   }
+  
+  
+  
+  
 
   return (
     <div>

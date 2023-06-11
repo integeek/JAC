@@ -13,12 +13,12 @@ function Compte() {
         <div className="w-1/3">
           <div className="mb-4">
             <label htmlFor="nom" className="block mb-2 font-medium">Nom</label>
-            <p id="nom" className="p-2 border border-2 border-gray-300 border-solid rounded-md">Doe</p>
+            <p id="nom" className="p-2 border border-2 border-gray-300 border-solid rounded-md">Giraud-Lanza</p>
           </div>
       
           <div className="mb-4">
             <label htmlFor="prenom" className="block mb-2 font-medium">Prenom</label>
-            <p id="prenom" className="p-2 border border-2 border-gray-300 border-solid rounded-md">John</p>
+            <p id="prenom" className="p-2 border border-2 border-gray-300 border-solid rounded-md">Ambre</p>
           </div>
       
           <div className="mb-4">

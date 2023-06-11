@@ -5,8 +5,36 @@ interface PrivateRouteProps {
   path: string;
   element: React.ReactNode;
   isAuthenticated: boolean;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  path,
+  element,
+  isAuthenticated,
+}) => {
+  if (isAuthenticated) {
+    return <Route path={path} element={element} />
+  } else {
+    return <Navigate to="/connexion" />
+  }
+}
+
+
+export default PrivateRoute
+
+
+
+
+
+/*import { Route, Navigate } from "react-router-dom"
+import React from "react"
+
+interface PrivateRouteProps {
+  path: string;
+  element: React.ReactNode;
+  isAuthenticated: boolean;
   allowedRoles: string[];
-  userRole: string; // Ajoutez la propriété userRole de type string
+  userRole: string;
 }
 
 
@@ -14,17 +42,18 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   path,
   element,
   isAuthenticated,
-  allowedRoles
+  allowedRoles,
+  userRole
 }) => {
-  const userRole = "admin" // Remplacez cette valeur par le rôle de l'utilisateur récupéré depuis votre système d'authentification
-
-  if (isAuthenticated && allowedRoles.includes(userRole)) {     // Vérifiez à la fois l'authentification et si le rôle de l'utilisateur est inclus dans les rôles autorisés
+  if (isAuthenticated && allowedRoles.includes(userRole)) {
     return <Route path={path} element={element} />
-  } else if (isAuthenticated) {  // Si l'utilisateur est authentifié mais n'a pas l'un des rôles autorisés,
+  } else if (isAuthenticated) {
     return <Navigate to="/erreurperm" />
-  } else {  // Si l'utilisateur n'est pas authentifié, redirigez-le vers la page de connexion
+  } else {
     return <Navigate to="/connexion" />
   }
 }
 
+
 export default PrivateRoute
+*/

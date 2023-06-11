@@ -14,16 +14,22 @@ function MesReservations() {
       menusId: string;
       menuName?: string;
       date?: Date
+      restaurantId: string;
     }
-    
 
   interface Menu {
     id: string;
     mainDish: string;
   }
 
+  interface Restaurant {
+    id: string;
+    name: string;
+  }
+
   const [reservation, setReservation] = useState<Reservation[]>([])
   const [menus, setMenus] = useState<Menu[]>([])
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([])
   const [showConfirmationModal, setShowConfirmationModal] = useState(false)
   const [reservationSelection, setReservationSelection] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
@@ -63,11 +69,23 @@ function MesReservations() {
       .catch((error) => {
         console.log(error)
       })
+    Axios.get("/restaurant")
+      .then((response) => {
+        setRestaurants(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [])
 
   const getMenuName = (menusId: string) => {
     const menu = menus.find(menu => menu.id === menusId)
     return menu ? menu.mainDish : "Menu introuvable"
+  }
+
+  const getRestaurantName = (restaurantId: string) => {
+    const restaurant = restaurants.find((restaurant) => restaurant.id === restaurantId)
+    return restaurant ? restaurant.name : "Restaurant introuvable"
   }
 
   const handleDeleteReservation = async (): Promise<void> => {
@@ -105,8 +123,9 @@ function MesReservations() {
         {reservation.map((reservation) => (
           <div key={reservation.id} className="border border-gray-300 rounded-lg p-4 m-4">
             <div className="mb-2">
-              <p className="text-xl">{"restaurant"}</p>
+              <p className="text-xl">{getRestaurantName(reservation.restaurantId)}</p>
               <span>{getMenuName(reservation.menusId)}</span>
+              <p>{reservation.commentaire ? reservation.commentaire : "Pas de commentaire"}</p>
             </div>
             <p className="mb-2 text-xl">{reservation.date ? moment(reservation.date).locale("fr").format("DD/MM/YYYY") : ""
             }</p>
@@ -122,7 +141,7 @@ function MesReservations() {
             <div className="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
               <button  onClick={() => setShowConfirmationModal(false)} type="button" className="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal">
                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                <span className="sr-only">Close modal</span>
+                <span className="sr-only">Fermer le modal</span>
               </button>
               <svg className="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
               <p className="mb-4 text-gray-500 dark:text-gray-300">Etes vous sûr de vouloir annuler cette réservation? </p>

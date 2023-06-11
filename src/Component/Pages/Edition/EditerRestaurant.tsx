@@ -85,6 +85,10 @@ function EditerRestaurant() {
             id: restaurantToUpdate.id,
             name: restaurantModif !== "" ? restaurantModif : restaurantToUpdate.name, // Remplace la question par la modification, sinon conserve la question initiale
             address: adresseModif !== "" ? adresseModif : restaurantToUpdate.address, // Remplace la réponse par la modification, sinon conserve la réponse initiale
+            description : descriptionModif !== "" ? descriptionModif : restaurantToUpdate.description,
+            horaire : horaireModif !== "" ? horaireModif : restaurantToUpdate.horaire,
+            contact : contactModif !== "" ? contactModif : restaurantToUpdate.contact,
+            equipement : equipementModif !== "" ? equipementModif : restaurantToUpdate.equipement,
           }
     
           // Effectuer la requête PATCH vers l'API pour mettre à jour la FAQ
@@ -285,7 +289,26 @@ function EditerRestaurant() {
                     <div className="mt-2">
                       <input type="text" placeholder="Nouvelle adresse" className="w-full max-w-xs input bg-gray-50 input-bordered" value={adresseModif}
                         onChange={(e) => setAdresseModif(e.target.value)} />
-
+                    </div>
+                    <h3 className="mt-6 text-lg font-medium leading-6 text-gray-900">Editer les horaires du restaurant</h3>
+                    <div className="mt-2">
+                      <input type="text" placeholder="Nouveaux horaires" className="w-full max-w-xs input bg-gray-50 input-bordered" value={horaireModif}
+                        onChange={(e) => setHoraireModif(e.target.value)} />
+                    </div>
+                    <h3 className="mt-6 text-lg font-medium leading-6 text-gray-900">Editer les informations de contact du restaurant</h3>
+                    <div className="mt-2">
+                      <input type="text" placeholder="Nouvelle adresse" className="w-full max-w-xs input bg-gray-50 input-bordered" value={contactModif}
+                        onChange={(e) => setContactModif(e.target.value)} />
+                    </div>
+                    <h3 className="mt-6 text-lg font-medium leading-6 text-gray-900">Editer la description du restaurant</h3>
+                    <div className="mt-2">
+                      <input type="text" placeholder="Nouvelle adresse" className="w-full max-w-xs input bg-gray-50 input-bordered" value={descriptionModif}
+                        onChange={(e) => setDescriptionModif(e.target.value)} />
+                    </div>
+                    <h3 className="mt-6 text-lg font-medium leading-6 text-gray-900">Editer les équipements du restaurant</h3>
+                    <div className="mt-2">
+                      <input type="text" placeholder="Nouvelle adresse" className="w-full max-w-xs input bg-gray-50 input-bordered" value={equipementModif}
+                        onChange={(e) => setEquipementModif(e.target.value)} />
                     </div>
                   </div>
                 </div>
@@ -388,13 +411,13 @@ function EditerRestaurant() {
             <p className="m-4">Entrez l'adresse du restaurant</p>
             <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
             <p className="m-4">Entrez les horaires du restaurant</p>
-            <input type="text" placeholder="Adresse du restaurant" value={nouveauHoraire} onChange={(e) => setNouveauHoraire(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+            <input type="text" placeholder="Horaires du restaurant" value={nouveauHoraire} onChange={(e) => setNouveauHoraire(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
             <p className="m-4">Entrez les informations de contact du restaurant</p>
-            <input type="text" placeholder="Adresse du restaurant" value={nouveauContact} onChange={(e) => setNouveauContact(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+            <input type="text" placeholder="Contact du restaurant" value={nouveauContact} onChange={(e) => setNouveauContact(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
             <p className="m-4">Entrez la description du restaurant</p>
-            <input type="text" placeholder="Adresse du restaurant" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+            <input type="text" placeholder="Description du restaurant" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
             <p className="m-4">Entrez les équipements du restaurant</p>
-            <input type="text" placeholder="Adresse du restaurant" value={nouvelEquipement} onChange={(e) => setNouvelEquipement(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+            <input type="text" placeholder="Equipement du restaurant" value={nouvelEquipement} onChange={(e) => setNouvelEquipement(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
               
             <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
             <br /><br />

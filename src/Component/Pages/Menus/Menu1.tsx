@@ -6,7 +6,6 @@ import { Link } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-
 function Menu1() {
 
   interface Repas {
@@ -28,7 +27,6 @@ function Menu1() {
   const [startDate, setStartDate] = useState(new Date())  
   const [selectedDate, setSelectedDate] = useState<null | Date>(null)
   const [showSuccessAlert, setShowSuccessAlert] = useState(false)
-
 
   const handleQuantityChange = (index: number, value: number) => {
     const newQuantities = [...quantities]
@@ -60,31 +58,41 @@ function Menu1() {
       return () => clearTimeout(timeoutId)
     }
   }, [showSuccessAlert])
+
   const handleAjouterReservation = () => {
     const menus = repas
-      .filter((repas, index) => quantities[index] > 0)
       .map((repas, index) => {
-        return {
-          menuId: repas.id,
-          quantity: quantities[index]
+        const quantity = quantities[index]
+        if (quantity > 0) {
+          return {
+            menuId: repas.id,
+            quantity: quantity
+          }
         }
+        return null
       })
+      .filter(menu => menu !== null)
   
     if (menus.length === 0) {
       setErrorMessage("Vous devez sélectionner au moins un menu.")
       return
     }
   
-    const totalQuantity = menus.reduce((acc, cur) => acc + cur.quantity, 0)
+    const totalQuantity = menus.reduce((acc, cur) => {
+      if (cur !== null) {
+        return acc + cur.quantity
+      }
+      return acc
+    }, 0)
   
     if (selectedDate) {
       const reservationData = {
         date: selectedDate.toISOString(),
         commentaire: commentaire,
-        menus: menus.map((menu) => menu.menuId).join(","),
-        nbPersonne: totalQuantity,
+        menus: menus,
+        nbPersonne: totalQuantity
       }
-    
+  
       Axios.post("/reservation", reservationData)
         .then((response) => {
           console.log(response)
@@ -96,6 +104,7 @@ function Menu1() {
         })
     }
   }
+  
   
   return (
     <div>
@@ -131,7 +140,8 @@ function Menu1() {
         </div>
 
         <div className="flex items-center justify-center mx-auto ">
-          
+          <label htmlFor="commentaire" className="block py-6 mb-2 text-sm font-medium text-black " >La date de votre réservation</label> 
+
           <DatePicker
             selected={selectedDate}
             onChange={(date: Date) => {

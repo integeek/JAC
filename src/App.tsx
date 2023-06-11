@@ -1,5 +1,5 @@
 import "./App.css"
-import React from "react"
+import React, { useEffect } from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Route, Routes, Navigate} from "react-router-dom"
 import { useCookies } from "react-cookie"
@@ -28,15 +28,16 @@ import PrivateRoute from "./Component/Pages/Authentification/privateRoute"
 import ErreurPermission from "./Component/Pages/ErreurPermission"
 // relier les différentes pages avec l'url
 function App() {
-
   const [cookies, setCookies] = useCookies(["Authentication"])
   const { Authentication: userRole } = cookies
   const isAuthenticated = !!cookies.Authentication
 
-  setCookies("Authentication", "cookie value", {
-    sameSite: "none",
-    secure: true, // Assurez-vous également que le cookie est sécurisé (HTTPS)
-  })
+  useEffect(() => {
+    setCookies("Authentication", "cookie value", {
+      sameSite: "none",
+      secure: true,
+    })
+  }, [])
   
   return (
     <div className ="App">
@@ -72,7 +73,7 @@ function App() {
     </div>
   )
 }
-
+//          <Route path="/editfaq element={<PrivateRoute path="/editfaq" element={<EditerFaq />} isAuthenticated={isAuthenticated}/>}/>
 // faire le lien avec la page index.html
 ReactDOM.render(
   <React.StrictMode>
@@ -81,4 +82,3 @@ ReactDOM.render(
   document.getElementById("root")
 )
 export default App
-//          <Route element={<PrivateRoute path="/editfaq" element={<EditerFaq />} isAuthenticated={isAuthenticated} allowedRoles={["admin", "restaurateur"]} userRole={userRole} />} />
