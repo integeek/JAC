@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
+
 function Menu1() {
 
   interface Repas {
@@ -76,21 +77,24 @@ function Menu1() {
   
     const totalQuantity = menus.reduce((acc, cur) => acc + cur.quantity, 0)
   
-    const reservationData = {
-      commentaire: commentaire,
-      menus: menus.map(menu => menu.menuId).join(","),
-      nbPersonne: totalQuantity,
+    if (selectedDate) {
+      const reservationData = {
+        date: selectedDate.toISOString(),
+        commentaire: commentaire,
+        menus: menus.map((menu) => menu.menuId).join(","),
+        nbPersonne: totalQuantity,
+      }
+    
+      Axios.post("/reservation", reservationData)
+        .then((response) => {
+          console.log(response)
+          setCommentaire("")
+          setShowSuccessAlert(true)
+        })
+        .catch(() => {
+          setErrorMessage("Une erreur s'est produite.")
+        })
     }
-  
-    Axios.post("/reservation", reservationData)
-      .then((response) => {
-        console.log(response)
-        setCommentaire("")
-        setShowSuccessAlert(true)
-      })
-      .catch(() => {
-        setErrorMessage("Une erreur s'est produite.")
-      })
   }
   
   return (
@@ -125,6 +129,21 @@ function Menu1() {
             </div>
           ))}
         </div>
+
+        <div className="flex items-center justify-center mx-auto ">
+          
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date: Date) => {
+              const nextDay = new Date(date)
+              nextDay.setDate(nextDay.getDate() + 1)
+              setSelectedDate(nextDay)
+            }}
+            dateFormat="yyyy-MM-dd"
+            className="block p-2.5 mt-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+          />
+        </div>
+
 
         <label htmlFor="commentaire" className="block py-6 mb-2 text-sm font-medium text-black " >Vos commentaires par rapport aux menus</label> 
         <textarea id="commentaire" className="textarea textarea-bordered outline:none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Vos commentaires" value={commentaire} onChange={(e) => setCommentaire(e.target.value)}></textarea>

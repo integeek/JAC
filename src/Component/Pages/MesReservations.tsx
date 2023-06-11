@@ -2,6 +2,8 @@ import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
 import Axios from "../../Axios"
 import { useState, useEffect } from "react"
+import moment from "moment"
+import "moment/locale/fr"
 
 function MesReservations() {
 
@@ -106,7 +108,8 @@ function MesReservations() {
               <p className="text-xl">{"restaurant"}</p>
               <span>{getMenuName(reservation.menusId)}</span>
             </div>
-            <p className="mb-2 text-xl">{reservation.date?.toLocaleDateString() ?? "Date non disponible"}</p>
+            <p className="mb-2 text-xl">{reservation.date ? moment(reservation.date).locale("fr").format("DD/MM/YYYY") : ""
+            }</p>
             <div className="text-center">
               <label onClick={() => handleShowConfirmationModal(reservation.id)}  htmlFor="annuler" className="px-4 py-2 font-bold text-white bg-red-500 rounded btn hover:bg-red-600">Annuler</label>
             </div>

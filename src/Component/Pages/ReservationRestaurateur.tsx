@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import Axios from "../../Axios"
 import Navigation from "../Navigation/Navigation"
 import Footer from "../Footer/Footer"
+import moment from "moment"
+import "moment/locale/fr"
 
 function ReservationRestaurateur() {
   interface Reservation {
@@ -82,6 +84,7 @@ function ReservationRestaurateur() {
 
   return (
     <div className="flex flex-col h-screen">
+      <title>Reservation restaurateur</title>
       <Navigation />
       <div className="flex-grow">
         <div className="px-4 mx-auto max-w-7xl">
@@ -116,9 +119,11 @@ function ReservationRestaurateur() {
                     <td className="px-4 py-2 border-b border-gray-300">
                       {"nom du client"}
                     </td>
+                    
                     <td className="px-4 py-2 border-b border-gray-300">
-                      {"date de la réservation"}
+                      {reservation.date ? moment(reservation.date).locale("fr").format("DD/MM/YYYY") : ""}
                     </td>
+
                     <td className="px-4 py-2 border-b border-gray-300">
                       {reservation.nbPersonne}
                     </td>
