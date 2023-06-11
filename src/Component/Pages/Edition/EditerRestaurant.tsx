@@ -25,6 +25,14 @@ function EditerRestaurant() {
     const [restaurantSelection, setRestaurantSelection] = useState("")
     const [showConfirmationModal, setShowConfirmationModal] = useState(false)
     const [showModalAide, setShowModalAide] = useState(false)
+    const [horaireModif, setHoraireModif] = useState("")
+    const [nouveauHoraire, setNouveauHoraire] = useState("")
+    const [descriptionModif, setDescriptionModif] = useState("")
+    const [nouvelleDescription, setNouvelleDescription] = useState("")
+    const [contactModif, setContactModif] = useState("")
+    const [nouveauContact, setNouveauContact] = useState("")
+    const [equipementModif, setEquipementModif] = useState("")
+    const [nouvelEquipement, setNouvelEquipement] = useState("")
 
 
     // Récuperer les données des restaurants dans la BDD
@@ -102,6 +110,10 @@ function EditerRestaurant() {
       Axios.post("/restaurant", {
         name: nouveauRestaurant,
         address: nouvelleAdresse,
+        description : nouvelleDescription,
+        horaire : nouveauHoraire,
+        contact : nouveauContact,
+        equipement : nouvelEquipement,
       })
         .then((response) => {
           // Mettre à jour l'état faqList avec la nouvelle question
@@ -110,6 +122,10 @@ function EditerRestaurant() {
           // Réinitialiser les états pour la nouvelle question et sa réponse
           setNouveauRestaurant("")
           setNouvelleAdresse("")
+          setNouveauHoraire("")
+          setNouvelleDescription("")
+          setNouveauContact("")
+          setNouvelEquipement("")
         })
         .catch((error) => {
           console.log(error)
@@ -299,6 +315,15 @@ function EditerRestaurant() {
               <input type="text" placeholder="Nom du restaurant" value={nouveauRestaurant} onChange={(e) => setNouveauRestaurant(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
               <p className="m-4">Entrez l'adresse du restaurant</p>
               <input type="text" placeholder="Adresse du restaurant" value={nouvelleAdresse} onChange={(e) => setNouvelleAdresse(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              <p className="m-4">Entrez les horaires du restaurant</p>
+              <input type="text" placeholder="Adresse du restaurant" value={nouveauHoraire} onChange={(e) => setNouveauHoraire(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              <p className="m-4">Entrez les informations de contact du restaurant</p>
+              <input type="text" placeholder="Adresse du restaurant" value={nouveauContact} onChange={(e) => setNouveauContact(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              <p className="m-4">Entrez la description du restaurant</p>
+              <input type="text" placeholder="Adresse du restaurant" value={nouvelleDescription} onChange={(e) => setNouvelleDescription(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              <p className="m-4">Entrez les équipements du restaurant</p>
+              <input type="text" placeholder="Adresse du restaurant" value={nouvelEquipement} onChange={(e) => setNouvelEquipement(e.target.value)} className="w-full max-w-xs input bg-gray-50 input-bordered" required/>
+              
               <button type="submit" className="m-8 bg-blue-400 border-blue-400 btn hover:bg-blue-600 btn-active">Valider</button>
               <br /><br />
             </div>         

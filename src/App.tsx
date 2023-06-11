@@ -29,11 +29,11 @@ import ErreurPermission from "./Component/Pages/ErreurPermission"
 // relier les différentes pages avec l'url
 function App() {
 
-  const [cookies, setCookie] = useCookies(["Authentication"])
+  const [cookies, setCookies] = useCookies(["Authentication"])
   const { Authentication: userRole } = cookies
   const isAuthenticated = !!cookies.Authentication
 
-  setCookie("Authentication", "cookie value", {
+  setCookies("Authentication", "cookie value", {
     sameSite: "none",
     secure: true, // Assurez-vous également que le cookie est sécurisé (HTTPS)
   })
