@@ -68,10 +68,12 @@ function Reserver() {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{restaurant.name}</h2>
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-row space-x-2 items-start">
                 <HiLocationMarker className="mr-2" />
                 <p>{restaurant.address}</p>
               </div>
+
+
               <div className="justify-end card-actions">
                 <div className="flex justify-center items-center  justify-self-center "> 
                   <button onClick={() => handleInfo(restaurant.id)} className="bg-gray-400 border-gray-400 btn hover:bg-gray-600 btn-active mr-10">

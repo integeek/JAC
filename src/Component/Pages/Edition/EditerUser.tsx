@@ -33,6 +33,7 @@ function EditerUser() {
   const [showModalAide, setShowModalAide] = useState(false)
   const [userInfo, setUserInfo] = useState<User | null>(null)
   const [showModalInfo, setShowModalInfo] = useState(false)
+  const [statut, setStatut] = useState(true)
 
 
 
@@ -92,6 +93,7 @@ function EditerUser() {
             firstname:  prenomModif !== "" ? prenomModif : userToUpdate.firstname, // Remplace la réponse par la modification, sinon conserve la réponse initiale
             name:  nomModif !== "" ? nomModif : userToUpdate.name,
             role:  roleModif !== "" ? roleModif : userToUpdate.role,
+            //enabled: statut !== "" ? statut : userToUpdate.enabled,
           }
   
           // Effectuer la requête PATCH vers l'API pour mettre à jour la FAQ

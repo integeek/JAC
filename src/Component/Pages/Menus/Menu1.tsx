@@ -6,25 +6,25 @@ import { Link } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-function Menu1() {
 
+function Menu1() {
   interface Repas {
-    id : string,
+    id: string;
     date: Date;
     entree: string;
     mainDish: string;
     mainDishDescription: string;
     dessert: string;
     restaurantId: number;
-  }
+    menuId: string; // Ajouter cette ligne
+  }  
 
   const [repas, setRepas] = useState<Repas[]>([])
   const [quantities, setQuantities] = useState(new Array(repas.length).fill(0))
   const [compteur, setCompteur] = useState(1)
   const [commentaire, setCommentaire] = useState("")
-  const [menusID, setMenusID] = useState("")
-  const [errorMessage, setErrorMessage] = useState("") //Pour les messages d'erreurs
-  const [startDate, setStartDate] = useState(new Date())  
+  const [menuIds, setMenuIds] = useState<string[]>([])
+  const [errorMessage, setErrorMessage] = useState("")
   const [selectedDate, setSelectedDate] = useState<null | Date>(null)
   const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
@@ -32,12 +32,24 @@ function Menu1() {
     const newQuantities = [...quantities]
     newQuantities[index] = value
     setQuantities(newQuantities)
+
+    const newMenuIds = [...menuIds]
+    const repasId = repas[index].id
+    if (value > 0) {
+      if (!newMenuIds.includes(repasId)) {
+        newMenuIds.push(repasId)
+      }
+    } else {
+      const menuIndex = newMenuIds.indexOf(repasId)
+      if (menuIndex !== -1) {
+        newMenuIds.splice(menuIndex, 1)
+      }
+    }
+    setMenuIds(newMenuIds)
   }
 
   useEffect(() => {
-    // Charger les restaurants depuis l'API
-    Axios
-      .get("menus")
+    Axios.get("menus")
       .then((response) => {
         setRepas(response.data)
         setQuantities(new Array(response.data.length).fill(0))
@@ -49,12 +61,9 @@ function Menu1() {
 
   useEffect(() => {
     if (showSuccessAlert) {
-      // Masquer la notification après 1 seconde
       const timeoutId = setTimeout(() => {
         setShowSuccessAlert(false)
       }, 2000)
-
-      // Nettoyer le timeout lors du démontage du composant ou lorsqu'il y a un changement de valeur pour showSuccessAlert
       return () => clearTimeout(timeoutId)
     }
   }, [showSuccessAlert])
@@ -65,13 +74,13 @@ function Menu1() {
         const quantity = quantities[index]
         if (quantity > 0) {
           return {
-            menuId: repas.id,
+            menuId: repas.menuId, // Utiliser repas.menuId comme menuId
             quantity: quantity
           }
         }
         return null
       })
-      .filter(menu => menu !== null)
+      .filter((menu) => menu !== null)
   
     if (menus.length === 0) {
       setErrorMessage("Vous devez sélectionner au moins un menu.")
@@ -90,7 +99,8 @@ function Menu1() {
         date: selectedDate.toISOString(),
         commentaire: commentaire,
         menus: menus,
-        nbPersonne: totalQuantity
+        nbPersonne: totalQuantity,
+        restaurantId: "2ccc7d8f-c70c-415b-a3bc-04f60d58cc5f"
       }
   
       Axios.post("/reservation", reservationData)
@@ -104,7 +114,6 @@ function Menu1() {
         })
     }
   }
-  
   
   return (
     <div>
